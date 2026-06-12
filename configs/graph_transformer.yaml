@@ -1,0 +1,62 @@
+project:
+  name: TRUST-Swarm
+  seed: 42
+
+data:
+  raw_csv: data/raw/telemetry.csv
+  output_dir: data/processed
+  window_size: 20
+  node_feature_columns:
+    - packet_loss_rate
+    - latency_ms
+    - route_deviation_m
+    - gps_jump_m
+    - velocity_inconsistency
+    - battery_level
+    - mission_progress
+    - zone_coverage
+    - energy_consumption
+  label_column: attack_label
+  run_id_column: run_id
+  uav_id_column: uav_id
+  time_column: timestep
+
+graph:
+  edge_strategy:
+    - distance_knn
+    - sinr_similarity
+    - same_zone
+  k_neighbors: 4
+  include_self_loops: true
+
+model:
+  name: graph_temporal_transformer
+  hidden_dim: 128
+  num_layers: 3
+  num_heads: 4
+  dropout: 0.25
+  temporal_window: 20
+  num_classes: 8
+
+training:
+  batch_size: 64
+  epochs: 60
+  learning_rate: 0.0003
+  weight_decay: 0.0001
+  early_stopping_patience: 10
+  gradient_clip_norm: 1.0
+
+evaluation:
+  metrics:
+    - accuracy
+    - macro_f1
+    - macro_precision
+    - macro_recall
+    - fpr
+    - fnr
+    - detection_delay
+    - latency_ms
+
+outputs:
+  results_csv: results/csv/graph_transformer_results.csv
+  model_path: results/models/graph_transformer.pt
