@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="650" viewBox="0 0 1100 650">
+<rect width="100%" height="100%" fill="white"/>
+<text x="550.0" y="40" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold">RA-MARS v5 Adversarial Training Robustness</text>
+<line x1="90" y1="80" x2="90" y2="500" stroke="black" stroke-width="2"/>
+<line x1="90" y1="500" x2="1060" y2="500" stroke="black" stroke-width="2"/>
+<text x="25" y="325.0" transform="rotate(-90 25,325.0)" text-anchor="middle" font-family="Arial" font-size="16">Adversarial Macro-F1 (%)</text>
+<line x1="85" y1="500.0" x2="90" y2="500.0" stroke="black"/>
+<text x="80" y="505.0" text-anchor="end" font-family="Arial" font-size="12">0.0</text>
+<line x1="90" y1="500.0" x2="1060" y2="500.0" stroke="#ddd"/>
+<line x1="85" y1="416.0" x2="90" y2="416.0" stroke="black"/>
+<text x="80" y="421.0" text-anchor="end" font-family="Arial" font-size="12">22.9</text>
+<line x1="90" y1="416.0" x2="1060" y2="416.0" stroke="#ddd"/>
+<line x1="85" y1="332.0" x2="90" y2="332.0" stroke="black"/>
+<text x="80" y="337.0" text-anchor="end" font-family="Arial" font-size="12">45.9</text>
+<line x1="90" y1="332.0" x2="1060" y2="332.0" stroke="#ddd"/>
+<line x1="85" y1="248.0" x2="90" y2="248.0" stroke="black"/>
+<text x="80" y="253.0" text-anchor="end" font-family="Arial" font-size="12">68.8</text>
+<line x1="90" y1="248.0" x2="1060" y2="248.0" stroke="#ddd"/>
+<line x1="85" y1="164.0" x2="90" y2="164.0" stroke="black"/>
+<text x="80" y="169.0" text-anchor="end" font-family="Arial" font-size="12">91.8</text>
+<line x1="90" y1="164.0" x2="1060" y2="164.0" stroke="#ddd"/>
+<line x1="85" y1="80.0" x2="90" y2="80.0" stroke="black"/>
+<text x="80" y="85.0" text-anchor="end" font-family="Arial" font-size="12">114.7</text>
+<line x1="90" y1="80.0" x2="1060" y2="80.0" stroke="#ddd"/>
+<rect x="102.0" y="134.8" width="107.8" height="365.2" fill="#4a78c2"/>
+<text x="155.9" y="126.8" text-anchor="middle" font-family="Arial" font-size="12">99.75</text>
+<text x="155.9" y="518" text-anchor="end" transform="rotate(-45 155.9,518)" font-family="Arial" font-size="12">FGSM ε=0.01</text>
+<rect x="221.8" y="139.7" width="107.8" height="360.3" fill="#4a78c2"/>
+<text x="275.6" y="131.7" text-anchor="middle" font-family="Arial" font-size="12">98.40</text>
+<text x="275.6" y="518" text-anchor="end" transform="rotate(-45 275.6,518)" font-family="Arial" font-size="12">FGSM ε=0.05</text>
+<rect x="341.5" y="153.9" width="107.8" height="346.1" fill="#4a78c2"/>
+<text x="395.4" y="145.9" text-anchor="middle" font-family="Arial" font-size="12">94.53</text>
+<text x="395.4" y="518" text-anchor="end" transform="rotate(-45 395.4,518)" font-family="Arial" font-size="12">FGSM ε=0.1</text>
+<rect x="461.2" y="168.1" width="107.8" height="331.9" fill="#4a78c2"/>
+<text x="515.1" y="160.1" text-anchor="middle" font-family="Arial" font-size="12">90.66</text>
+<text x="515.1" y="518" text-anchor="end" transform="rotate(-45 515.1,518)" font-family="Arial" font-size="12">FGSM ε=0.2</text>
+<rect x="581.0" y="178.8" width="107.8" height="321.2" fill="#4a78c2"/>
+<text x="634.9" y="170.8" text-anchor="middle" font-family="Arial" font-size="12">87.72</text>
+<text x="634.9" y="518" text-anchor="end" transform="rotate(-45 634.9,518)" font-family="Arial" font-size="12">FGSM ε=0.3</text>
+<rect x="700.8" y="140.0" width="107.8" height="360.0" fill="#4a78c2"/>
+<text x="754.6" y="132.0" text-anchor="middle" font-family="Arial" font-size="12">98.31</text>
+<text x="754.6" y="518" text-anchor="end" transform="rotate(-45 754.6,518)" font-family="Arial" font-size="12">PGD ε=0.05</text>
+<rect x="820.5" y="152.2" width="107.8" height="347.8" fill="#4a78c2"/>
+<text x="874.4" y="144.2" text-anchor="middle" font-family="Arial" font-size="12">94.98</text>
+<text x="874.4" y="518" text-anchor="end" transform="rotate(-45 874.4,518)" font-family="Arial" font-size="12">PGD ε=0.1</text>
+<rect x="940.2" y="156.3" width="107.8" height="343.7" fill="#4a78c2"/>
+<text x="994.1" y="148.3" text-anchor="middle" font-family="Arial" font-size="12">93.87</text>
+<text x="994.1" y="518" text-anchor="end" transform="rotate(-45 994.1,518)" font-family="Arial" font-size="12">PGD ε=0.2</text>
+</svg>

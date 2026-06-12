@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="650" viewBox="0 0 1100 650">
+<rect width="100%" height="100%" fill="white"/>
+<text x="550.0" y="40" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold">RA-MARS v5 Detection Delay</text>
+<line x1="90" y1="80" x2="90" y2="500" stroke="black" stroke-width="2"/>
+<line x1="90" y1="500" x2="1060" y2="500" stroke="black" stroke-width="2"/>
+<text x="25" y="325.0" transform="rotate(-90 25,325.0)" text-anchor="middle" font-family="Arial" font-size="16">Delay</text>
+<line x1="85" y1="500.0" x2="90" y2="500.0" stroke="black"/>
+<text x="80" y="505.0" text-anchor="end" font-family="Arial" font-size="12">0.0</text>
+<line x1="90" y1="500.0" x2="1060" y2="500.0" stroke="#ddd"/>
+<line x1="85" y1="416.0" x2="90" y2="416.0" stroke="black"/>
+<text x="80" y="421.0" text-anchor="end" font-family="Arial" font-size="12">7.8</text>
+<line x1="90" y1="416.0" x2="1060" y2="416.0" stroke="#ddd"/>
+<line x1="85" y1="332.0" x2="90" y2="332.0" stroke="black"/>
+<text x="80" y="337.0" text-anchor="end" font-family="Arial" font-size="12">15.5</text>
+<line x1="90" y1="332.0" x2="1060" y2="332.0" stroke="#ddd"/>
+<line x1="85" y1="248.0" x2="90" y2="248.0" stroke="black"/>
+<text x="80" y="253.0" text-anchor="end" font-family="Arial" font-size="12">23.3</text>
+<line x1="90" y1="248.0" x2="1060" y2="248.0" stroke="#ddd"/>
+<line x1="85" y1="164.0" x2="90" y2="164.0" stroke="black"/>
+<text x="80" y="169.0" text-anchor="end" font-family="Arial" font-size="12">31.0</text>
+<line x1="90" y1="164.0" x2="1060" y2="164.0" stroke="#ddd"/>
+<line x1="85" y1="80.0" x2="90" y2="80.0" stroke="black"/>
+<text x="80" y="85.0" text-anchor="end" font-family="Arial" font-size="12">38.8</text>
+<line x1="90" y1="80.0" x2="1060" y2="80.0" stroke="#ddd"/>
+<rect x="102.0" y="335.1" width="33.6" height="164.9" fill="#4a78c2"/>
+<text x="118.8" y="327.1" text-anchor="middle" font-family="Arial" font-size="12">15.23</text>
+<text x="118.8" y="518" text-anchor="end" transform="rotate(-45 118.8,518)" font-family="Arial" font-size="12">combined-high</text>
+<rect x="147.6" y="134.8" width="33.6" height="365.2" fill="#4a78c2"/>
+<text x="164.4" y="126.8" text-anchor="middle" font-family="Arial" font-size="12">33.74</text>
+<text x="164.4" y="518" text-anchor="end" transform="rotate(-45 164.4,518)" font-family="Arial" font-size="12">combined-low</text>
+<rect x="193.2" y="280.2" width="33.6" height="219.8" fill="#4a78c2"/>
+<text x="210.0" y="272.2" text-anchor="middle" font-family="Arial" font-size="12">20.30</text>
+<text x="210.0" y="518" text-anchor="end" transform="rotate(-45 210.0,518)" font-family="Arial" font-size="12">combined-medium</text>
+<rect x="238.9" y="337.8" width="33.6" height="162.2" fill="#4a78c2"/>
+<text x="255.7" y="329.8" text-anchor="middle" font-family="Arial" font-size="12">14.99</text>
+<text x="255.7" y="518" text-anchor="end" transform="rotate(-45 255.7,518)" font-family="Arial" font-size="12">jamming-high</text>
+<rect x="284.5" y="144.2" width="33.6" height="355.8" fill="#4a78c2"/>
+<text x="301.3" y="136.2" text-anchor="middle" font-family="Arial" font-size="12">32.87</text>
+<text x="301.3" y="518" text-anchor="end" transform="rotate(-45 301.3,518)" font-family="Arial" font-size="12">jamming-low</text>
+<rect x="330.1" y="269.8" width="33.6" height="230.2" fill="#4a78c2"/>
+<text x="346.9" y="261.8" text-anchor="middle" font-family="Arial" font-size="12">21.27</text>
+<text x="346.9" y="518" text-anchor="end" transform="rotate(-45 346.9,518)" font-family="Arial" font-size="12">jamming-medium</text>
+<rect x="375.7" y="332.6" width="33.6" height="167.4" fill="#4a78c2"/>
+<text x="392.5" y="324.6" text-anchor="middle" font-family="Arial" font-size="12">15.47</text>
+<text x="392.5" y="518" text-anchor="end" transform="rotate(-45 392.5,518)" font-family="Arial" font-size="12">jamming_spoofing-…</text>
+<rect x="421.3" y="152.5" width="33.6" height="347.5" fill="#4a78c2"/>
+<text x="438.1" y="144.5" text-anchor="middle" font-family="Arial" font-size="12">32.11</text>
+<text x="438.1" y="518" text-anchor="end" transform="rotate(-45 438.1,518)" font-family="Arial" font-size="12">jamming_spoofing-…</text>
+<rect x="467.0" y="270.7" width="33.6" height="229.3" fill="#4a78c2"/>
+<text x="483.8" y="262.7" text-anchor="middle" font-family="Arial" font-size="12">21.19</text>
+<text x="483.8" y="518" text-anchor="end" transform="rotate(-45 483.8,518)" font-family="Arial" font-size="12">jamming_spoofing-…</text>
+<rect x="512.6" y="333.9" width="33.6" height="166.1" fill="#4a78c2"/>
+<text x="529.4" y="325.9" text-anchor="middle" font-family="Arial" font-size="12">15.35</text>
+<text x="529.4" y="518" text-anchor="end" transform="rotate(-45 529.4,518)" font-family="Arial" font-size="12">jamming_tampering…</text>
+<rect x="558.2" y="151.0" width="33.6" height="349.0" fill="#4a78c2"/>
+<text x="575.0" y="143.0" text-anchor="middle" font-family="Arial" font-size="12">32.24</text>
+<text x="575.0" y="518" text-anchor="end" transform="rotate(-45 575.0,518)" font-family="Arial" font-size="12">jamming_tampering…</text>
+<rect x="603.8" y="274.4" width="33.6" height="225.6" fill="#4a78c2"/>
+<text x="620.6" y="266.4" text-anchor="middle" font-family="Arial" font-size="12">20.85</text>
+<text x="620.6" y="518" text-anchor="end" transform="rotate(-45 620.6,518)" font-family="Arial" font-size="12">jamming_tampering…</text>
+<rect x="649.4" y="337.0" width="33.6" height="163.0" fill="#4a78c2"/>
+<text x="666.2" y="329.0" text-anchor="middle" font-family="Arial" font-size="12">15.06</text>
+<text x="666.2" y="518" text-anchor="end" transform="rotate(-45 666.2,518)" font-family="Arial" font-size="12">spoofing-high</text>
+<rect x="695.0" y="136.6" width="33.6" height="363.4" fill="#4a78c2"/>
+<text x="711.9" y="128.6" text-anchor="middle" font-family="Arial" font-size="12">33.58</text>
+<text x="711.9" y="518" text-anchor="end" transform="rotate(-45 711.9,518)" font-family="Arial" font-size="12">spoofing-low</text>
+<rect x="740.7" y="267.5" width="33.6" height="232.5" fill="#4a78c2"/>
+<text x="757.5" y="259.5" text-anchor="middle" font-family="Arial" font-size="12">21.48</text>
+<text x="757.5" y="518" text-anchor="end" transform="rotate(-45 757.5,518)" font-family="Arial" font-size="12">spoofing-medium</text>
+<rect x="786.3" y="331.2" width="33.6" height="168.8" fill="#4a78c2"/>
+<text x="803.1" y="323.2" text-anchor="middle" font-family="Arial" font-size="12">15.59</text>
+<text x="803.1" y="518" text-anchor="end" transform="rotate(-45 803.1,518)" font-family="Arial" font-size="12">spoofing_tamperin…</text>
+<rect x="831.9" y="156.2" width="33.6" height="343.8" fill="#4a78c2"/>
+<text x="848.7" y="148.2" text-anchor="middle" font-family="Arial" font-size="12">31.77</text>
+<text x="848.7" y="518" text-anchor="end" transform="rotate(-45 848.7,518)" font-family="Arial" font-size="12">spoofing_tamperin…</text>
+<rect x="877.5" y="271.8" width="33.6" height="228.2" fill="#4a78c2"/>
+<text x="894.3" y="263.8" text-anchor="middle" font-family="Arial" font-size="12">21.08</text>
+<text x="894.3" y="518" text-anchor="end" transform="rotate(-45 894.3,518)" font-family="Arial" font-size="12">spoofing_tamperin…</text>
+<rect x="923.1" y="332.5" width="33.6" height="167.5" fill="#4a78c2"/>
+<text x="940.0" y="324.5" text-anchor="middle" font-family="Arial" font-size="12">15.48</text>
+<text x="940.0" y="518" text-anchor="end" transform="rotate(-45 940.0,518)" font-family="Arial" font-size="12">tampering-high</text>
+<rect x="968.8" y="150.9" width="33.6" height="349.1" fill="#4a78c2"/>
+<text x="985.6" y="142.9" text-anchor="middle" font-family="Arial" font-size="12">32.25</text>
+<text x="985.6" y="518" text-anchor="end" transform="rotate(-45 985.6,518)" font-family="Arial" font-size="12">tampering-low</text>
+<rect x="1014.4" y="274.1" width="33.6" height="225.9" fill="#4a78c2"/>
+<text x="1031.2" y="266.1" text-anchor="middle" font-family="Arial" font-size="12">20.87</text>
+<text x="1031.2" y="518" text-anchor="end" transform="rotate(-45 1031.2,518)" font-family="Arial" font-size="12">tampering-medium</text>
+</svg>

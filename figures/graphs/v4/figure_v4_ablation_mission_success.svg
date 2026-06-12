@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="650" viewBox="0 0 1100 650">
+<rect width="100%" height="100%" fill="white"/>
+<text x="550.0" y="40" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold">RA-MARS v4 Ablation Study</text>
+<line x1="90" y1="80" x2="90" y2="500" stroke="black" stroke-width="2"/>
+<line x1="90" y1="500" x2="1060" y2="500" stroke="black" stroke-width="2"/>
+<text x="25" y="325.0" transform="rotate(-90 25,325.0)" text-anchor="middle" font-family="Arial" font-size="16">Mission Success (%)</text>
+<line x1="85" y1="500.0" x2="90" y2="500.0" stroke="black"/>
+<text x="80" y="505.0" text-anchor="end" font-family="Arial" font-size="12">0.0</text>
+<line x1="90" y1="500.0" x2="1060" y2="500.0" stroke="#ddd"/>
+<line x1="85" y1="416.0" x2="90" y2="416.0" stroke="black"/>
+<text x="80" y="421.0" text-anchor="end" font-family="Arial" font-size="12">16.9</text>
+<line x1="90" y1="416.0" x2="1060" y2="416.0" stroke="#ddd"/>
+<line x1="85" y1="332.0" x2="90" y2="332.0" stroke="black"/>
+<text x="80" y="337.0" text-anchor="end" font-family="Arial" font-size="12">33.9</text>
+<line x1="90" y1="332.0" x2="1060" y2="332.0" stroke="#ddd"/>
+<line x1="85" y1="248.0" x2="90" y2="248.0" stroke="black"/>
+<text x="80" y="253.0" text-anchor="end" font-family="Arial" font-size="12">50.8</text>
+<line x1="90" y1="248.0" x2="1060" y2="248.0" stroke="#ddd"/>
+<line x1="85" y1="164.0" x2="90" y2="164.0" stroke="black"/>
+<text x="80" y="169.0" text-anchor="end" font-family="Arial" font-size="12">67.7</text>
+<line x1="90" y1="164.0" x2="1060" y2="164.0" stroke="#ddd"/>
+<line x1="85" y1="80.0" x2="90" y2="80.0" stroke="black"/>
+<text x="80" y="85.0" text-anchor="end" font-family="Arial" font-size="12">84.6</text>
+<line x1="90" y1="80.0" x2="1060" y2="80.0" stroke="#ddd"/>
+<rect x="102.0" y="134.8" width="124.9" height="365.2" fill="#4a78c2"/>
+<text x="164.4" y="126.8" text-anchor="middle" font-family="Arial" font-size="12">73.61</text>
+<text x="164.4" y="518" text-anchor="end" transform="rotate(-45 164.4,518)" font-family="Arial" font-size="12">Full RA-MARS</text>
+<rect x="238.9" y="135.5" width="124.9" height="364.5" fill="#4a78c2"/>
+<text x="301.3" y="127.5" text-anchor="middle" font-family="Arial" font-size="12">73.46</text>
+<text x="301.3" y="518" text-anchor="end" transform="rotate(-45 301.3,518)" font-family="Arial" font-size="12">Without AI Detect…</text>
+<rect x="375.7" y="135.4" width="124.9" height="364.6" fill="#4a78c2"/>
+<text x="438.1" y="127.4" text-anchor="middle" font-family="Arial" font-size="12">73.48</text>
+<text x="438.1" y="518" text-anchor="end" transform="rotate(-45 438.1,518)" font-family="Arial" font-size="12">Without Mission A…</text>
+<rect x="512.6" y="135.2" width="124.9" height="364.8" fill="#4a78c2"/>
+<text x="575.0" y="127.2" text-anchor="middle" font-family="Arial" font-size="12">73.52</text>
+<text x="575.0" y="518" text-anchor="end" transform="rotate(-45 575.0,518)" font-family="Arial" font-size="12">Without Adaptive …</text>
+<rect x="649.4" y="135.4" width="124.9" height="364.6" fill="#4a78c2"/>
+<text x="711.9" y="127.4" text-anchor="middle" font-family="Arial" font-size="12">73.49</text>
+<text x="711.9" y="518" text-anchor="end" transform="rotate(-45 711.9,518)" font-family="Arial" font-size="12">Without Digital T…</text>
+<rect x="786.3" y="253.6" width="124.9" height="246.4" fill="#4a78c2"/>
+<text x="848.7" y="245.6" text-anchor="middle" font-family="Arial" font-size="12">49.66</text>
+<text x="848.7" y="518" text-anchor="end" transform="rotate(-45 848.7,518)" font-family="Arial" font-size="12">Without Tamper-Re…</text>
+<rect x="923.1" y="135.5" width="124.9" height="364.5" fill="#4a78c2"/>
+<text x="985.6" y="127.5" text-anchor="middle" font-family="Arial" font-size="12">73.46</text>
+<text x="985.6" y="518" text-anchor="end" transform="rotate(-45 985.6,518)" font-family="Arial" font-size="12">Without Navigatio…</text>
+</svg>

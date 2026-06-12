@@ -1,0 +1,66 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Large temporary data files
+*.tmp
+*.log
+
+# Simulation output folders that may become large
+simulations/results/temp/
+simulations/results/raw/
+simulations/datasets/temp/
+
+# Model files
+*.pkl
+*.joblib
+*.h5
+*.pt
+*.pth
+
+# LaTeX temporary files
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.synctex.gz
+
+# Word temporary files
+~$*.docx
+
+# Excel temporary files
+~$*.xlsx
+simulations/datasets/synthetic_uav_mission_data.csv
+simulations/datasets/synthetic_uav_mission_data_v2_full.csv
+simulations/datasets/uav_mission_telemetry_v3_full.csv
+~$*
+*.zip
+~$*
+__pycache__/
+*.pyc
+.DS_Store
+simulations/datasets/
+simulations/results/*.csv

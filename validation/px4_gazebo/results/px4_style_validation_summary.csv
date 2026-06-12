@@ -1,0 +1,2 @@
+validation_type,uav_count,telemetry_rows,mission_success_rate,mission_assurance_index_mean,packet_delivery_ratio,latency_ms_mean,route_deviation_m_mean,gps_drift_m_mean,tamper_mismatches_detected,tamper_detection_rate_proxy
+PX4-style MAVLink telemetry emulation,3,1800,97.94444444444444,0.8300299783535353,0.9261111111111111,64.06410333333334,8.865697777777779,7.4376744444444425,38,100.0

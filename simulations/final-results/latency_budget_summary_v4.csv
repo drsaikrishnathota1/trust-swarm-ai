@@ -1,0 +1,16 @@
+parameter,value,notes
+Simulation step (telemetry interval),1000 ms (1 Hz MAVLink logging),"Limited by MAVLink logging rate, not FC loop"
+UAV cruise speed,15 m/s,"DJI Matrice 300 class, surveillance mode"
+Flight controller loop rate,400 Hz (2.5 ms/cycle),Pixhawk 6C / PX4 default attitude control loop
+MAVLink telemetry rate,10 Hz (100 ms/message),Standard MAVLink HEARTBEAT + telemetry stream
+"LSTM inference time (Jetson Nano, 20 steps)",8.0 ms,"PyTorch LSTM, batch=1, CPU inference"
+MAI scoring time,2.0 ms,Weighted sum of 5 component scores
+Digital twin action selection,1.5 ms,argmax over 6 candidate actions
+Total RA-MARS framework overhead per cycle,11.5 ms,1.15% of telemetry interval — negligible
+Framework overhead as % of 1s telemetry interval,1.15%,FC operates independently of RA-MARS
+"Mean detection delay (low intensity, jamming)",~32653 ms,Detection occurs within 33 telemetry cycles
+"Mean detection delay (high intensity, jamming)",~15310 ms,Detection occurs within 16 telemetry cycles
+Distance travelled during low-intensity detection,~490 m,UAV travels ~495m before detection at low intensity
+Distance travelled during high-intensity detection,~230 m,UAV travels ~240m before detection at high intensity
+FC cycles during low-intensity detection,~13061 cycles,"FC completes ~13,200 cycles before detection"
+FC cycles during high-intensity detection,~6124 cycles,"FC completes ~6,400 cycles before detection"
