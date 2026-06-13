@@ -14,8 +14,6 @@ Preferred:
 
 ## Setup on RunPod
 
-Run:
-
 git clone https://github.com/drsaikrishnathota1/trust-swarm-ai.git
 cd trust-swarm-ai
 
@@ -29,8 +27,6 @@ python -m pip install -e . --no-deps
 
 ## Check GPU
 
-Run:
-
 python - <<'PY'
 import torch
 print("Torch:", torch.__version__)
@@ -43,8 +39,6 @@ Do not continue unless CUDA available is True.
 
 ## Small Validation Run
 
-Run:
-
 RUNS=10 TIMESTEPS=80 UAVS=10 EPOCHS=1 BATCH_SIZE=32 SEEDS="42" ./scripts/run_journal_experiments.sh
 python scripts/aggregate_journal_results.py
 
@@ -55,8 +49,6 @@ rm -rf data/processed/seed_42
 rm -rf results/journal
 
 ## Final Journal Run
-
-Run only after small validation succeeds:
 
 RUNS=300 TIMESTEPS=240 UAVS=20 EPOCHS=30 BATCH_SIZE=128 SEEDS="42 123 2026" ./scripts/run_journal_experiments.sh
 python scripts/aggregate_journal_results.py
@@ -76,8 +68,6 @@ results/journal/summary/ood_summary.csv
 results/journal/summary/feature_importance_summary.csv
 
 ## Package Results
-
-Run:
 
 tar -czf trust-swarm-journal-results.tar.gz results/journal
 ls -lh trust-swarm-journal-results.tar.gz
