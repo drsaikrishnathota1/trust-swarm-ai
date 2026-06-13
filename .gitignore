@@ -64,3 +64,57 @@ __pycache__/
 .DS_Store
 simulations/datasets/
 simulations/results/*.csv
+
+
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+env/
+
+# macOS
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Generated data
+data/raw/*.csv
+data/raw/*.pt
+data/raw/*.pkl
+data/processed/*.pt
+data/processed/*.csv
+data/processed/*.pkl
+
+# Generated models
+results/models/*.pt
+results/models/*.pth
+results/models/*.zip
+results/models/*.pkl
+
+# Generated result outputs
+results/csv/*.csv
+results/figures/*.png
+results/figures/*.jpg
+results/figures/*.jpeg
+results/figures/*.pdf
+results/figures/*.svg
+results/tables/*.csv
+results/tables/*.xlsx
+results/tables/*.md
+
+# Logs
+*.log
+runs/
+wandb/
+mlruns/
+
+# Large archives
+*.zip
+*.tar
+*.tar.gz
