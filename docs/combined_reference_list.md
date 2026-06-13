@@ -1,16 +1,16 @@
-# TRUST-Swarm Combined Reference List
+# TRUST-Swarm Combined Candidate Reference List
 
-This file combines the verified reference batches created for the TRUST-Swarm manuscript.
+This file combines the candidate reference batches created for the TRUST-Swarm manuscript.
 
 Important note: before final journal submission, every reference should be checked again for exact author order, title, venue, year, DOI/arXiv ID, and formatting style required by the target journal.
 
 ---
 
-# TRUST-Swarm Verified Reference List — Batch 1
+# TRUST-Swarm Candidate Reference List — Batch 1
 
 ## Purpose
 
-This document contains the first verified reference batch for the TRUST-Swarm manuscript. These references support UAV cyber-physical security, UAV swarm spoofing, graph neural networks, temporal transformers, uncertainty calibration, OOD evaluation, explainable AI, and PPO-based recovery reasoning.
+This document contains the first candidate reference batch for the TRUST-Swarm manuscript. These references support UAV cyber-physical security, UAV swarm spoofing, graph neural networks, temporal transformers, uncertainty calibration, OOD evaluation, explainable AI, and PPO-based recovery reasoning.
 
 This is Batch 1 only. A second batch should be added later to reach the final target of 55–65 references.
 
@@ -135,11 +135,11 @@ Batch 2 should add more UAV-specific and cyber-physical security references, esp
 
 ---
 
-# TRUST-Swarm Verified Reference List — Batch 2
+# TRUST-Swarm Candidate Reference List — Batch 2
 
 ## Purpose
 
-This document contains Reference Batch 2 for the TRUST-Swarm manuscript. This batch focuses on UAV security surveys, anti-jamming communication, GNSS/GPS spoofing, UAV reinforcement-learning planning, and mission-recovery support.
+This document contains Candidate Reference Batch 2 for the TRUST-Swarm manuscript. This batch focuses on UAV security surveys, anti-jamming communication, GNSS/GPS spoofing, UAV reinforcement-learning planning, and mission-recovery support.
 
 Batch 1 contained references [1]–[33]. This batch continues with references [34]–[55].
 

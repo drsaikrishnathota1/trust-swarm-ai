@@ -1,8 +1,8 @@
-# TRUST-Swarm Verified Reference List — Batch 2
+# TRUST-Swarm Candidate Reference List — Batch 2
 
 ## Purpose
 
-This document contains Reference Batch 2 for the TRUST-Swarm manuscript. This batch focuses on UAV security surveys, anti-jamming communication, GNSS/GPS spoofing, UAV reinforcement-learning planning, and mission-recovery support.
+This document contains Candidate Reference Batch 2 for the TRUST-Swarm manuscript. This batch focuses on UAV security surveys, anti-jamming communication, GNSS/GPS spoofing, UAV reinforcement-learning planning, and mission-recovery support.
 
 Batch 1 contained references [1]–[33]. This batch continues with references [34]–[55].
 

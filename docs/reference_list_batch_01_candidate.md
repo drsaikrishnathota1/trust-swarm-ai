@@ -1,8 +1,8 @@
-# TRUST-Swarm Verified Reference List — Batch 1
+# TRUST-Swarm Candidate Reference List — Batch 1
 
 ## Purpose
 
-This document contains the first verified reference batch for the TRUST-Swarm manuscript. These references support UAV cyber-physical security, UAV swarm spoofing, graph neural networks, temporal transformers, uncertainty calibration, OOD evaluation, explainable AI, and PPO-based recovery reasoning.
+This document contains the first candidate reference batch for the TRUST-Swarm manuscript. These references support UAV cyber-physical security, UAV swarm spoofing, graph neural networks, temporal transformers, uncertainty calibration, OOD evaluation, explainable AI, and PPO-based recovery reasoning.
 
 This is Batch 1 only. A second batch should be added later to reach the final target of 55–65 references.
 
