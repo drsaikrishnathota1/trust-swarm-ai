@@ -19,7 +19,7 @@ import pandas as pd
 from stable_baselines3 import PPO
 from stable_baselines3.common.env_checker import check_env
 
-from src.trust_swarm.recovery.mission_recovery_env import MissionRecoveryEnv, RecoveryConfig
+from trust_swarm.recovery.mission_recovery_env import MissionRecoveryEnv, RecoveryConfig
 
 
 def parse_args() -> argparse.Namespace:

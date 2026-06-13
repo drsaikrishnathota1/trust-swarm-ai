@@ -1,0 +1,29 @@
+[project]
+name = "trust-swarm-ai"
+version = "0.1.0"
+description = "Trustworthy Graph-Temporal AI for High-Confidence Multi-UAV Mission Assurance Under Cyber-Physical Attacks"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "Sai Krishna Thota" }
+]
+
+dependencies = [
+  "numpy",
+  "pandas",
+  "scikit-learn",
+  "matplotlib",
+  "torch",
+  "pyyaml",
+  "tqdm",
+  "gymnasium",
+  "stable-baselines3"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+

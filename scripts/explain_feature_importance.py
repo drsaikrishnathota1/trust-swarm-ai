@@ -31,7 +31,7 @@ import torch.nn.functional as F
 from sklearn.metrics import f1_score
 from sklearn.model_selection import train_test_split
 
-from src.trust_swarm.models.graph_temporal_transformer import GraphTemporalTransformer
+from trust_swarm.models.graph_temporal_transformer import GraphTemporalTransformer
 
 
 DEFAULT_FEATURES = [

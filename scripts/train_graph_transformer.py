@@ -24,7 +24,7 @@ from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_sc
 from sklearn.model_selection import train_test_split
 from torch.utils.data import DataLoader, TensorDataset
 
-from src.trust_swarm.models.graph_temporal_transformer import GraphTemporalTransformer
+from trust_swarm.models.graph_temporal_transformer import GraphTemporalTransformer
 
 
 def parse_args() -> argparse.Namespace:
