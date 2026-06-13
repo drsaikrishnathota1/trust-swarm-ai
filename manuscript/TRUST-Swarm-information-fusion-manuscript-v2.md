@@ -72,63 +72,71 @@ The remainder of this paper is organized as follows. Section 2 reviews related w
 
 ---
 
-# TRUST-Swarm Related Work Draft
+# Information Fusion Related Work v2
 
 ## 2. Related Work
 
-### 2.1 UAV Mission Assurance and Swarm Resilience
+This section reviews prior work related to UAV swarm mission assurance, cyber-physical UAV attacks, graph-temporal learning, multi-source information fusion, uncertainty calibration, OOD evaluation, explainability, and recovery-oriented reinforcement learning.
 
-Multi-UAV systems are increasingly used for surveillance, reconnaissance, mapping, disaster response, and defense-oriented autonomous operations. Compared with single-UAV missions, swarm systems provide distributed coverage, redundancy, and adaptive coordination. However, these benefits also create new mission-assurance challenges. A swarm can fail due to communication disruption, navigation errors, energy depletion, node compromise, route deviation, or coordinated cyber-physical attacks.
+## 2.1 UAV Swarm Mission Assurance
 
-Mission assurance for UAV swarms requires more than detecting a single attack or failure. It requires continuous evaluation of whether the mission remains operational, whether the swarm can maintain coverage, whether UAV nodes can coordinate reliably, and whether recovery actions should be triggered. Existing approaches often use rule-based monitoring, anomaly detection, secure communication protocols, or resilience-oriented control strategies. While useful, many of these approaches do not provide an integrated high-confidence AI framework that combines prediction, uncertainty, explainability, OOD stress testing, and recovery reasoning.
+UAV swarms provide distributed sensing, wide-area coverage, redundancy, and cooperative mission execution. These properties make them attractive for surveillance, reconnaissance, disaster response, infrastructure monitoring, and defense-oriented missions. However, swarm autonomy also creates mission-assurance challenges because the mission state depends on multiple UAV nodes, communication links, navigation signals, energy constraints, coverage progress, and operator objectives.
 
-### 2.2 Cyber-Physical Attacks on UAV Swarms
+Prior UAV security and mission-assurance studies have examined UAS risks, sensor-channel threats, UAV-enabled systems, and cyber-physical vulnerabilities [1, 2, 34–37]. These works motivate the need for resilient monitoring and assurance mechanisms. However, many existing approaches focus on individual attack detection or secure communication rather than integrated mission-state fusion across heterogeneous telemetry sources.
 
-UAV swarms are exposed to both cyber and physical attack surfaces. Communication jamming can increase packet loss, latency, and coordination failures. GPS spoofing can manipulate localization, navigation, velocity consistency, and route tracking. Telemetry tampering can distort mission progress, coverage status, battery state, or energy-consumption reporting. Combined attacks can simultaneously affect communication, navigation, and mission-integrity signals.
+## 2.2 Cyber-Physical Attacks on UAV Swarms
 
-Many prior studies focus on detecting specific attacks, such as jamming or spoofing. However, real missions may involve mixed or delayed attacks, intermittent effects, stealthy low-intensity disruption, or unseen attack patterns. This creates a need for evaluation beyond standard in-distribution classification. TRUST-Swarm addresses this gap by including OOD and unseen attack stress tests such as stealth jamming, slow GPS drift, intermittent tampering, delayed combined attacks, and unseen swarm noise.
+UAV swarms are exposed to cyber-physical attacks that can corrupt or degrade mission information streams. Communication jamming can increase latency and packet loss. GPS or GNSS spoofing can distort localization, route tracking, and velocity consistency. Telemetry tampering can manipulate mission progress, energy reporting, or coverage status. Combined attacks can affect multiple information channels simultaneously.
 
-### 2.3 Temporal Deep Learning for UAV Telemetry
+Prior work has studied GPS spoofing detection, cooperative swarm spoofing mitigation, UAV anti-jamming communication, and adversarial UAV planning [3, 4, 38–47]. These studies show that UAV mission assurance requires reasoning over communication, navigation, and mission-integrity signals together. TRUST-Swarm builds on this direction by modeling mission assurance as a graph-temporal multi-source fusion problem rather than only a single-attack classification task.
 
-Temporal models such as LSTM, GRU, and 1D-CNN are commonly used for sequential telemetry analysis. LSTM and GRU models are effective for learning time-dependent patterns, while 1D-CNN models can capture local temporal signatures efficiently. In the TRUST-Swarm experiments, these models serve as important baselines for evaluating in-distribution mission-state classification.
+## 2.3 Multi-Source Information Fusion for Mission Awareness
 
-The final results show that the 1D-CNN baseline achieves the strongest in-distribution classification performance. This suggests that the synthetic telemetry environment contains strong local temporal patterns. However, high in-distribution accuracy alone does not provide uncertainty calibration, OOD stress analysis, graph-based mission reasoning, explainability, or recovery-oriented decision support. Therefore, temporal baselines are important for classification comparison, but they do not fully satisfy the broader high-confidence mission-assurance objective.
+Information fusion is central to autonomous mission awareness because a single sensor or telemetry source rarely provides sufficient evidence for reliable mission-state estimation. In UAV swarms, mission state must be inferred by combining communication telemetry, navigation behavior, energy state, coverage status, and mission-progress indicators.
 
-### 2.4 Graph-Temporal AI for Swarm Systems
+Traditional fusion approaches often focus on combining sensor measurements or improving state estimation. In contrast, TRUST-Swarm focuses on cyber-physical mission-assurance fusion, where telemetry streams may be adversarially corrupted or distribution-shifted. The framework operationalizes multi-source fusion by representing UAV telemetry as graph-temporal fusion windows and evaluating fused predictions using classification, calibration, OOD stress testing, explainability, and recovery reasoning.
 
-UAV swarms naturally form dynamic graph systems. UAVs can be treated as nodes, while communication, proximity, coordination, or shared mission context can define edges. Graph-temporal learning is suitable for this setting because it can model both spatial relationships among UAV nodes and temporal evolution across mission windows.
+## 2.4 Graph-Temporal Learning for UAV Swarms
 
-Graph neural networks and graph attention mechanisms provide a way to learn relational dependencies among nodes, while temporal transformers can capture long-range sequence behavior. TRUST-Swarm uses this idea by modeling multi-UAV telemetry as graph-temporal windows with UAV nodes, mission time, and telemetry features. The Graph-Temporal Transformer is used to learn mission-state patterns under normal, jamming, spoofing, tampering, and combined attack conditions.
+UAV swarms naturally form dynamic graph systems. UAVs can be represented as nodes, while communication, proximity, coordination, or shared mission context can define relationships. Graph neural networks, graph attention models, and graph-temporal approaches are therefore well suited for learning relational dependencies in multi-agent systems [5–10].
 
-### 2.5 Uncertainty Calibration and High-Confidence AI
+Transformers and temporal models provide additional support for capturing long-range mission evolution and temporal dependencies [11–13]. TRUST-Swarm combines these ideas by using a Graph-Temporal Transformer to learn both UAV-node relationships and mission-time evolution from graph-temporal fusion windows.
 
-For safety-critical autonomous systems, prediction confidence is as important as prediction accuracy. A model that is accurate in-distribution but poorly calibrated may be unsafe when deployed in unfamiliar mission conditions. Uncertainty calibration evaluates whether predicted probabilities reflect actual correctness likelihood.
+## 2.5 Temporal Deep Learning Baselines
 
-TRUST-Swarm evaluates uncertainty using Expected Calibration Error, Brier score, predictive confidence, and predictive entropy. The final three-seed experiment shows strong in-distribution calibration for the Graph-Temporal Transformer. This supports the high-confidence computing direction because calibrated confidence can help a mission-assurance layer decide when to trust, monitor, or escalate a model prediction.
+Temporal deep learning models such as LSTM, GRU, and 1D-CNN are common baselines for sequence classification and telemetry analysis [14–17]. LSTM and GRU models capture recurrent temporal dependencies, while 1D-CNN models capture local temporal signatures efficiently.
 
-### 2.6 OOD and Unseen Attack Evaluation
+In TRUST-Swarm, these models are used to evaluate whether conventional temporal models can classify mission-state patterns from the same telemetry windows. The strong 1D-CNN result shows that local temporal signatures are highly informative in the current synthetic telemetry setting. This supports the need for careful claim positioning: TRUST-Swarm should be presented as a trustworthy information-fusion framework, not merely as the highest-accuracy classifier.
 
-Out-of-distribution evaluation is important because real cyber-physical missions may differ from training conditions. Attackers may use unseen jammer locations, stealthy low-power attacks, slow GPS drift, delayed combined effects, or intermittent tampering. Models that perform well on in-distribution test data may fail when the input distribution shifts.
+## 2.6 Uncertainty Calibration for High-Confidence Fusion
 
-TRUST-Swarm explicitly evaluates unseen attack stress conditions. The final results show major degradation under stealth jamming, slow GPS drift, and delayed combined attacks. This finding is important because it shows that even calibrated in-distribution models can struggle under severe unseen cyber-physical shifts. Therefore, OOD stress testing should be treated as a core part of mission-assurance evaluation rather than an optional robustness check.
+High-confidence mission assurance requires calibrated confidence estimates. A UAV swarm model may produce a correct or incorrect mission-state prediction, but the mission-assurance layer also needs to know whether that prediction is reliable. Prior work on neural-network calibration, MC dropout, deep ensembles, and uncertainty under dataset shift provides the foundation for confidence-aware learning [18–24].
 
-### 2.7 Explainable AI for Mission Assurance
+TRUST-Swarm evaluates calibration using Expected Calibration Error, Brier score, predictive confidence, and predictive entropy. This supports confidence-aware fusion because the framework evaluates not only what mission state is predicted, but also how trustworthy the fused prediction is under in-distribution conditions.
 
-Explainability helps determine whether a model is relying on mission-relevant telemetry or arbitrary artifacts. In UAV mission assurance, useful explanations should identify operationally meaningful drivers such as latency, packet loss, route deviation, GPS jump, mission progress, zone coverage, battery state, or energy consumption.
+## 2.7 OOD Evaluation and Distribution Shift
 
-TRUST-Swarm uses perturbation-based feature importance to identify the most influential telemetry features. The final results show that latency, zone coverage, route deviation, mission progress, and GPS jump are the dominant decision drivers. These features are consistent with communication degradation, mission coverage loss, navigation disruption, and mission-progress interruption, supporting the operational credibility of the model.
+Autonomous UAV missions may encounter unseen cyber-physical conditions that differ from training data. Attackers may use stealth jamming, slow GPS drift, intermittent tampering, delayed combined attacks, or noise patterns that were not observed during model training. Prior OOD and distribution-shift studies show that models can fail under shifted inputs even when they perform well in-distribution [22, 25–28, 54, 55].
 
-### 2.8 Recovery Reasoning and Reinforcement Learning
+TRUST-Swarm includes OOD-aware fusion stress testing to evaluate how fused mission-state predictions behave under unseen cyber-physical shifts. This is important because high in-distribution accuracy does not guarantee reliable mission assurance under adversarial or unfamiliar operating conditions.
 
-Mission assurance should not stop at attack recognition. Once a risk is detected, the system should support recovery-oriented decisions such as continuing the mission, monitoring, rerouting, reassigning tasks, isolating compromised nodes, or returning to base. Reinforcement learning provides a mechanism for learning such policies through reward-based interaction with a mission environment.
+## 2.8 Explainability for Fusion-Driver Analysis
 
-TRUST-Swarm includes a PPO-based recovery environment as a recovery-reasoning layer. The current recovery module demonstrates feasibility, but it should be interpreted as an initial scaffold rather than a complete operational recovery system. Future work should improve reward design, action diversity, safety constraints, and integration with realistic mission simulators.
+Explainability is important for mission assurance because operators and downstream recovery modules need to understand which telemetry sources influenced a prediction. Prior explainable AI methods such as LIME, SHAP, saliency evaluation, and XAI frameworks support interpretation of model decisions [29–32].
 
-### 2.9 Research Gap
+TRUST-Swarm uses perturbation-based feature importance to identify fusion drivers. The analysis reveals whether the model relies on operationally meaningful telemetry sources such as latency, zone coverage, route deviation, mission progress, and GPS jump. This improves trust because the fused prediction can be linked back to mission-relevant evidence.
 
-The literature contains strong work on UAV attack detection, secure communication, anomaly detection, graph learning, uncertainty estimation, explainability, and reinforcement learning. However, these areas are often studied separately. Few frameworks integrate graph-temporal mission modeling, uncertainty calibration, OOD stress testing, explainability, and recovery reasoning into one high-confidence mission-assurance pipeline for multi-UAV cyber-physical operations.
+## 2.9 Recovery-Oriented Reinforcement Learning
 
-TRUST-Swarm addresses this gap by presenting an integrated trustworthy AI framework for multi-UAV mission assurance. The goal is not only to classify attack states, but also to evaluate confidence, expose OOD vulnerability, explain decision drivers, and support recovery-oriented reasoning.
+Mission assurance should not stop at mission-state prediction. When a risk is detected, a UAV swarm may need to continue, monitor, reroute, reassign, isolate a node, or return to base. Reinforcement learning, PPO, and multi-agent reinforcement learning provide foundations for adaptive mission planning and recovery-oriented reasoning [33, 48–53].
+
+TRUST-Swarm includes a PPO-based recovery scaffold to demonstrate how fused mission-state predictions and confidence signals can support downstream mission-assurance decisions. The current recovery component is not a deployment-ready controller, but it provides an initial bridge between trustworthy information fusion and recovery reasoning.
+
+## 2.10 Research Gap
+
+The literature includes strong work on UAV security, cyber-physical attacks, graph learning, temporal modeling, uncertainty estimation, OOD detection, explainability, and reinforcement learning. However, these areas are often studied separately. Existing UAV security systems may detect attacks, but they often do not integrate multi-source telemetry fusion, graph-temporal mission modeling, calibrated confidence, OOD stress testing, fusion-driver explainability, and recovery reasoning in one pipeline.
+
+TRUST-Swarm addresses this gap by presenting a trustworthy graph-temporal multi-source information fusion framework for UAV swarm mission assurance. The framework evaluates not only mission-state classification, but also confidence reliability, unseen-shift vulnerability, telemetry-source importance, and recovery-oriented decision support.
 
 
 ---
