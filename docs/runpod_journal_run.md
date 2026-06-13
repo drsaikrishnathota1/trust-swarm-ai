@@ -23,3 +23,7 @@ source .venv/bin/activate
 
 python -m pip install --upgrade pip
 python -m pip install -e . --no-deps
+
+
+python -m pip install numpy pandas scikit-learn matplotlib torch pyyaml tqdm gymnasium stable-baselines3
+python -m pip install -e . --no-deps
