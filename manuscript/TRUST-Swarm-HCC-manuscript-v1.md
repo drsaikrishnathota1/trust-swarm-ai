@@ -266,52 +266,31 @@ Runtime and complexity profiling is also included. The profiling reports model p
 
 The TRUST-Swarm methodology operationalizes high-confidence computing for secure UAV swarm mission assurance. It models cyber-physical mission telemetry, constructs graph-temporal mission windows, evaluates intelligent prediction, measures confidence reliability, tests OOD vulnerability, explains mission-risk drivers, analyzes framework components, profiles computational feasibility, and connects prediction outputs to recovery-oriented reasoning. This integrated design supports the central claim of the paper: secure UAV swarm mission assurance requires more than classification accuracy; it requires high-confidence evidence across reliability, robustness, traceability, and response support.
 
-## 4. Experimental Setup
+## 4. Experimental setup
 
-This section describes the experimental setup used to evaluate TRUST-Swarm as a high-confidence graph-temporal intelligent computing framework for secure multi-UAV mission assurance. The evaluation is designed to test mission-state recognition, baseline comparison, confidence calibration, OOD vulnerability, traceable explanation, and recovery-oriented reasoning [R01–R03, R37–R50, R64–R80].
+This section describes the experimental setup used to evaluate TRUST-Swarm as a high-confidence graph-temporal intelligent computing framework for secure multi-UAV mission assurance. The evaluation is designed to be broader than ordinary classification testing. It measures mission-state recognition, temporal baseline comparison, confidence calibration, OOD cyber-physical stress behavior, feature-level traceability, recovery-oriented reasoning, ablation evidence, and runtime feasibility. This structure follows the high-confidence computing requirement that security-critical intelligent systems should be evaluated not only for predictive accuracy, but also for reliability, robustness, interpretability, and practical computational behavior.
 
-## 4.1 Computing Environment
+### 4.1. Computing environment and implementation
 
-The final experiment was executed in a GPU-based RunPod environment using Python and PyTorch. The implementation used pandas, NumPy, scikit-learn, matplotlib, Gymnasium, and Stable-Baselines3. Neural-network training was performed with GPU acceleration.
+The final experiments were executed in a GPU-based RunPod environment using Python and PyTorch. The implementation also used pandas and NumPy for data processing, scikit-learn for evaluation metrics and baseline utilities, matplotlib for result visualization, Gymnasium for the recovery-reasoning environment, and Stable-Baselines3 for PPO-based reinforcement learning. Neural-network training and runtime profiling were conducted with GPU acceleration.
 
-The experiment used three random seeds:
+The runtime and complexity profiling was conducted on an NVIDIA H200 GPU. This environment was used to measure inference latency, model size, throughput, training-step time, and GPU memory behavior. Reporting these details is important because TRUST-Swarm is positioned as a high-confidence computing framework, and practical feasibility must be supported by evidence rather than only by accuracy metrics.
 
-* 42
-* 123
-* 2026
+### 4.2. Random seeds and repeatability
 
-Using multiple seeds reduces dependence on a single telemetry generation run or train-test split and supports more reliable performance reporting.
+The evaluation used three random seeds: 42, 123, and 2026. Each seed generated an independent simulation run and train-test split. Using multiple seeds reduces dependence on a single data-generation instance and supports more reliable performance reporting. Results are reported using mean and standard deviation where applicable.
 
-## 4.2 Synthetic Multi-UAV Mission Telemetry
+For each seed, the telemetry generator produced 300 mission runs, 240 timesteps per mission, 20 UAV nodes per mission, 1,440,000 raw telemetry rows, and 66,300 graph-temporal mission windows. This setup provides enough repeated mission structure to evaluate normal operation, individual cyber-physical attacks, and combined attack states while preserving repeatability.
 
-A controlled simulation-based telemetry generator was used to evaluate cyber-physical mission assurance under repeatable conditions, motivated by UAV cyber-physical security, communication, spoofing, and tampering risks [R21–R28, R31–R33]. Each seed generated:
+### 4.3. Synthetic multi-UAV cyber-physical telemetry
 
-* 300 mission runs
-* 240 timesteps per mission
-* 20 UAVs per mission
-* 1,440,000 raw telemetry rows per seed
-* 66,300 graph-temporal mission windows per seed
+The dataset is generated using a controlled simulation-based telemetry environment. The purpose of using controlled synthetic telemetry is not to replace real UAV flight validation. Instead, it provides a repeatable benchmark for stress-testing cyber-physical mission-assurance behavior under known attack conditions, multiple random seeds, and controlled OOD shifts.
 
-The simulation includes normal mission operation and cyber-physical attack states. The purpose of this dataset is to provide a controlled high-confidence benchmark for evaluating secure mission-state prediction and uncertainty-aware mission reasoning.
+The simulated mission environment includes normal operation and seven attack-related mission states: jamming, spoofing, tampering, jamming-spoofing, jamming-tampering, spoofing-tampering, and combined attack. These labels represent communication disruption, navigation manipulation, telemetry integrity attack, and multi-vector mission degradation. Jamming affects packet loss and latency. Spoofing affects route deviation, GPS jumps, and velocity inconsistency. Tampering affects battery level, mission progress, zone coverage, and energy consumption. Combined attack states affect several telemetry groups at the same time.
 
-## 4.3 Mission-State Classes
+### 4.4. Telemetry features
 
-The mission-state labels include eight classes:
-
-1. normal
-2. jamming
-3. spoofing
-4. tampering
-5. jamming-spoofing
-6. jamming-tampering
-7. spoofing-tampering
-8. combined attack
-
-These classes represent communication disruption, navigation manipulation, telemetry integrity attack, and combined cyber-physical mission degradation [R24–R26, R31–R33].
-
-## 4.4 Telemetry Features
-
-Each UAV is represented using nine telemetry features:
+Each UAV node is represented using nine telemetry features:
 
 1. packet_loss_rate
 2. latency_ms
@@ -323,73 +302,54 @@ Each UAV is represented using nine telemetry features:
 8. zone_coverage
 9. energy_consumption
 
-These features capture communication reliability, navigation integrity, energy state, mission progress, and coverage quality [R21–R28, R31–R33].
+These features were selected to represent the major information streams required for cyber-physical mission assurance. Packet loss and latency capture communication reliability. Route deviation, GPS jump, and velocity inconsistency capture navigation integrity. Battery level and energy consumption capture energy state. Mission progress and zone coverage capture mission effectiveness and coverage quality. Together, these features allow the framework to evaluate how attacks degrade mission-state prediction across communication, navigation, energy, and mission-progress dimensions.
 
-## 4.5 Graph-Temporal Mission Windows
+### 4.5. Graph-temporal mission-window construction
 
-Raw telemetry is transformed into graph-temporal mission windows using a sliding temporal window to preserve temporal mission evolution and UAV-node structure [R51–R59]. Each mission-window sample is represented as:
+Raw telemetry is transformed into graph-temporal mission windows using a sliding temporal window. Each mission-window sample is represented as:
 
-X ∈ R^(T × N × F)
+X ∈ R^(T × N × F),
 
-where:
+where T is the temporal window length, N is the number of UAV nodes, and F is the number of telemetry features. In the final experiment, T = 20 timesteps, N = 20 UAV nodes, and F = 9 telemetry features. Therefore, each mission-window tensor has the shape:
 
-* T = 20 timesteps
-* N = 20 UAV nodes
-* F = 9 telemetry features
+X ∈ R^(20 × 20 × 9).
 
-Thus, each graph-temporal mission window has the final shape:
+This representation preserves mission-time evolution, UAV-node structure, and telemetry-feature heterogeneity. It allows the Graph-Temporal Transformer to learn mission degradation patterns across nodes and time. It also allows baseline models to be evaluated on the same mission-window evidence after reshaping into temporal input formats.
 
-X ∈ R^(20 × 20 × 9)
+### 4.6. Evaluated models
 
-This representation preserves mission-time evolution, UAV-node structure, and telemetry-feature structure.
-
-## 4.6 Evaluated Models
-
-The evaluation includes the proposed Graph-Temporal Transformer and three temporal baseline models based on transformer, graph-learning, recurrent, and convolutional sequence-modeling foundations [R51–R63]:
+The experimental comparison includes four models:
 
 1. LSTM
 2. GRU
 3. 1D-CNN
 4. Graph-Temporal Transformer
 
-The LSTM and GRU baselines evaluate recurrent temporal learning. The 1D-CNN baseline evaluates local temporal pattern extraction. The Graph-Temporal Transformer evaluates graph-temporal mission reasoning across UAV nodes and mission time.
+The LSTM and GRU baselines evaluate recurrent temporal modeling. The 1D-CNN baseline evaluates local temporal pattern extraction. The Graph-Temporal Transformer evaluates graph-temporal mission reasoning across UAV nodes, temporal windows, and telemetry features.
 
-## 4.7 Training Configuration
+This comparison is included to prevent overclaiming. The goal is not to force the proposed model to be the strongest raw classifier in every condition. Instead, the goal is to evaluate whether TRUST-Swarm provides high-confidence mission-assurance value beyond ordinary classification, including calibration, OOD exposure, traceability, recovery reasoning, ablation evidence, and runtime feasibility.
 
-Each model was trained under the following configuration:
+### 4.7. Training configuration
 
-* epochs: 30
-* batch size: 128
-* seeds: 42, 123, 2026
+Each model was trained for 30 epochs using a batch size of 128. The same three random seeds were used across the evaluation pipeline. For each seed, the dataset was split into training and testing partitions after graph-window construction. Performance was then aggregated across seeds.
 
-Results were aggregated across the three seeds using mean and standard deviation.
+The training configuration was kept consistent across baseline models and the Graph-Temporal Transformer to support fair comparison. The evaluation emphasizes macro-averaged metrics because the cyber-physical attack classes are imbalanced. Macro-level reporting prevents the normal or frequent classes from dominating the interpretation.
 
-## 4.8 In-Distribution Classification Metrics
+### 4.8. In-distribution classification metrics
 
-The mission-state recognition task was evaluated using:
+The in-distribution mission-state recognition task was evaluated using test loss, accuracy, macro precision, macro recall, and macro F1. Accuracy measures overall correctness, while macro precision, macro recall, and macro F1 evaluate class-balanced performance across normal, single-attack, and combined-attack states.
 
-* test loss
-* accuracy
-* macro precision
-* macro recall
-* macro F1
+Macro F1 is emphasized because mission assurance must correctly recognize minority attack states, not only frequent states. A high accuracy score alone may hide poor recognition of rare or combined attacks. Therefore, macro F1 provides a more meaningful measure of cyber-physical mission-state recognition.
 
-Macro-averaged metrics were emphasized because the cyber-physical attack classes are imbalanced and mission-state performance must be interpreted beyond raw accuracy.
+### 4.9. Confidence calibration metrics
 
-## 4.9 Confidence Calibration Metrics
+The confidence-aware reliability layer was evaluated using Expected Calibration Error, Brier score, mean predictive confidence, predictive entropy, and low-confidence rate. Monte Carlo dropout with 20 stochastic samples was used during uncertainty evaluation.
 
-The confidence-aware reliability layer was evaluated using calibration and uncertainty metrics commonly used for probabilistic reliability assessment [R37–R43]:
+These metrics support the high-confidence computing objective. Expected Calibration Error measures the gap between predicted confidence and empirical correctness. Brier score measures probabilistic prediction quality. Predictive entropy captures uncertainty in the output distribution. Low-confidence rate identifies cases where the model may require monitoring, escalation, or recovery-oriented reasoning.
 
-* Expected Calibration Error
-* Brier score
-* mean predictive confidence
-* predictive entropy
+### 4.10. OOD cyber-physical stress testing
 
-Monte Carlo dropout with 20 stochastic samples was used during uncertainty evaluation. The goal was to evaluate whether the Graph-Temporal Transformer produced reliable in-distribution confidence estimates.
-
-## 4.10 OOD Cyber-Physical Stress Testing
-
-OOD stress testing evaluated model behavior under unseen cyber-physical mission shifts, following the broader motivation of OOD and distribution-shift evaluation [R43–R46]. The OOD conditions were:
+OOD stress testing was used to evaluate model behavior under unseen cyber-physical mission shifts. The OOD conditions were:
 
 1. in-distribution test
 2. stealth jammer
@@ -398,46 +358,33 @@ OOD stress testing evaluated model behavior under unseen cyber-physical mission 
 5. delayed combined attack
 6. unseen swarm noise
 
-Each OOD condition was evaluated using:
+Each OOD condition was evaluated using accuracy, macro F1, mean confidence, predictive entropy, and low-confidence rate. The goal is not to claim complete OOD reliability. Instead, the goal is to expose mission-risk conditions where performance degrades or confidence becomes unreliable. This is important because high-confidence systems should reveal failure modes rather than only report favorable in-distribution results.
 
-* accuracy
-* macro F1
-* mean confidence
-* predictive entropy
-* low-confidence rate
+### 4.11. Traceable explanation evaluation
 
-The purpose of this evaluation is not to claim complete OOD reliability. Instead, it identifies mission-risk conditions where model performance degrades or confidence becomes unreliable [R43–R46].
+Traceability was evaluated using perturbation-based feature importance. First, baseline macro F1 was computed. Then, each telemetry feature was replaced with its mean value, and macro F1 was recomputed. Feature importance was calculated as:
 
-## 4.11 Traceable Explanation Evaluation
+Feature importance = baseline macro F1 − perturbed macro F1.
 
-Traceability was evaluated using perturbation-based feature importance, motivated by explainability and feature-attribution methods for trustworthy AI [R47–R50]. First, the baseline macro F1 was computed. Then, each telemetry feature was replaced by its mean value, and macro F1 was recomputed.
+A larger macro-F1 drop indicates that the feature has greater influence on mission-state prediction. The final explanation analysis identifies latency, zone coverage, route deviation, mission progress, and GPS jump as the most influential mission-risk drivers. These features are operationally meaningful because they correspond to communication degradation, mission coverage loss, navigation disruption, mission-progress interruption, and spoofing-related displacement.
 
-Feature importance was calculated as:
+### 4.12. Recovery-oriented reasoning evaluation
 
-Feature importance = baseline macro F1 − perturbed macro F1
+The PPO-based recovery module was evaluated as a recovery-reasoning scaffold. The action space includes continue, monitor, reroute, reassign, isolate node, and return to base. The recovery state includes mission-state prediction, confidence, entropy, and mission-risk indicators.
 
-A larger macro-F1 drop indicates that the feature is more important for mission-state prediction.
+This module is not claimed as an operationally deployable UAV controller. Instead, it demonstrates how high-confidence prediction outputs can support mission-response reasoning. This is important because mission assurance should not stop at detection. It should connect risk recognition to possible response actions.
 
-## 4.12 Recovery-Oriented Reasoning Evaluation
+### 4.13. Ablation and runtime evaluation
 
-The PPO-based recovery module was evaluated as a recovery-reasoning scaffold, motivated by reinforcement learning, safe RL, multi-agent decision support, and cyber-physical resilience literature [R64–R80]. The action space included:
+The final evaluation includes both architectural and framework-level ablation analysis. Architectural ablations remove UAV-node attention and temporal transformer reasoning. Framework-level ablations remove calibration evidence, OOD evidence, explanation evidence, or recovery support. This design shows which components contribute to classification performance and which components contribute to high-confidence assurance evidence.
 
-1. continue
-2. monitor
-3. reroute
-4. reassign
-5. isolate node
-6. return to base
+Runtime and complexity analysis was conducted to evaluate practical feasibility. The profiling reports trainable parameters, model size, inference batch latency, inference sample latency, throughput, and training-step time. These measurements support the practical computing dimension of the HCC contribution.
 
-This module is included to demonstrate how prediction, confidence, entropy, and mission-risk indicators can support mission-response reasoning. It is not claimed as an operationally deployable UAV controller.
+### 4.14. Experimental limitation
 
-## 4.13 Current Experimental Limitation
+The current evaluation uses controlled synthetic telemetry rather than field-collected UAV telemetry. This design enables repeatable testing across attack states, OOD conditions, and random seeds, but real-world validation remains future work. Future evaluation should include high-fidelity UAV simulators, hardware-in-the-loop experiments, real swarm telemetry, adaptive attackers, communication-topology changes, and operational mission constraints.
 
-The current evaluation uses controlled synthetic telemetry rather than field-collected UAV telemetry. This design allows repeatable testing across attack states, OOD conditions, and multiple seeds, but real-world validation remains future work.
-
-Final HCC-aligned evidence includes ablation analysis and runtime/complexity profiling. The ablation study evaluates the contribution of UAV-node attention, temporal transformer reasoning, and assurance modules. The runtime analysis reports model size, latency, throughput, train-step time, and GPU memory use to support practical feasibility claims.
-
-<!-- CITATIONS_INSERTED_EXPERIMENTAL_SETUP_V1 -->
+Despite this limitation, the controlled setup is useful for the present study because it allows the framework to evaluate prediction, calibration, OOD behavior, explanation, recovery reasoning, ablation, and runtime feasibility in a repeatable environment.
 
 ## 5. Results and Discussion
 
