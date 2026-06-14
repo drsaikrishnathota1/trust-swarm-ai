@@ -1,7 +1,7 @@
 # HCC Manuscript Quality Check
 
 - Manuscript: `manuscript/TRUST-Swarm-HCC-manuscript-v1.md`
-- Approximate word count: 6479
+- Approximate word count: 6488
 
 ## Required Sections
 
@@ -28,15 +28,15 @@
 
 ## Overclaim Scan
 
-- CHECK: `perfect ood` appears 2 time(s)
-- CHECK: `deployment-ready` appears 2 time(s)
+- CHECK: `perfect ood` appears 1 time(s)
+- CHECK: `deployment-ready` appears 1 time(s)
 
 ## Honesty / Limitation Scan
 
 - PASS: `not positioned as the best standalone classifier` appears 1 time(s)
 - PASS: `synthetic` appears 6 time(s)
 - PASS: `future work` appears 5 time(s)
-- PASS: `not claimed as a deployment-ready` appears 2 time(s)
+- PASS: `not claimed as a deployment-ready` appears 1 time(s)
 
 ## Tables / Evidence Scan
 
