@@ -135,201 +135,136 @@ TRUST-Swarm addresses this gap by presenting a high-confidence graph-temporal in
 
 ## 3. Methodology
 
-This section presents TRUST-Swarm as a high-confidence graph-temporal intelligent computing framework for secure multi-UAV mission assurance under cyber-physical attacks. The framework is designed to support secure prediction, calibrated confidence, OOD vulnerability analysis, traceable explanation, and recovery-oriented reasoning [R01–R03, R21–R33, R37–R50, R64–R80].
+This section presents the methodology of TRUST-Swarm, a high-confidence graph-temporal intelligent computing framework for secure multi-UAV mission assurance under cyber-physical attacks. The objective of the framework is not limited to mission-state classification. Instead, TRUST-Swarm is designed to support an assurance-oriented decision pipeline in which prediction, reliability estimation, OOD vulnerability analysis, traceable explanation, and recovery-oriented reasoning are evaluated together. This design follows the central premise of high-confidence computing: in a security-critical autonomous system, a prediction is useful only when the system can also estimate its trustworthiness, identify possible failure conditions, explain the decision, and support mission-response planning.
 
-## 3.1 Framework Overview
+### 3.1. Framework overview
 
-TRUST-Swarm contains six main layers:
+TRUST-Swarm consists of six integrated layers. The first layer generates multi-UAV mission telemetry under normal and adversarial cyber-physical conditions. The second layer converts raw telemetry into graph-temporal mission windows that preserve UAV-node structure, mission-time evolution, and heterogeneous telemetry features. The third layer performs mission-state prediction using a Graph-Temporal Transformer. The fourth layer evaluates prediction reliability using confidence and calibration metrics. The fifth layer evaluates OOD behavior under unseen cyber-physical stress conditions. The sixth layer provides traceable explanation and recovery-oriented reasoning.
 
-1. Secure multi-UAV telemetry generation
-2. Graph-temporal mission-window construction
-3. Graph-temporal intelligent prediction
-4. Confidence-aware reliability evaluation
-5. OOD-aware cyber-physical stress testing
-6. Traceable explanation and recovery-oriented reasoning
+The framework can be summarized as follows:
 
-The purpose of the framework is not only to classify cyber-physical mission states, but also to evaluate whether predictions are trustworthy, whether unseen attack shifts degrade reliability, which telemetry factors influence decisions, and how mission-risk outputs can support recovery reasoning.
+1. Secure multi-UAV telemetry modeling under normal, jamming, spoofing, tampering, and combined attack states.
+2. Graph-temporal mission-window construction over time, UAV nodes, and telemetry features.
+3. Graph-Temporal Transformer prediction for mission-state recognition.
+4. Confidence-aware reliability evaluation using calibration and uncertainty metrics.
+5. OOD cyber-physical stress testing under unseen mission shifts.
+6. Perturbation-based explainability and PPO-based recovery-reasoning support.
 
-## 3.2 Secure Multi-UAV Telemetry Generation
+This layered structure allows TRUST-Swarm to evaluate both intelligent prediction and high-confidence assurance evidence. A conventional classifier may answer only what state is predicted. TRUST-Swarm is designed to answer five additional questions: how reliable the prediction is, whether the model remains stable under unseen cyber-physical shifts, which telemetry features influenced the decision, which framework components contribute to mission-assurance evidence, and how the prediction output can support recovery reasoning.
 
-A controlled simulation-based telemetry generator is used to create multi-UAV cyber-physical mission scenarios. Each mission contains a swarm of UAVs operating across mission time under normal or adversarial conditions [R21–R28, R31–R33].
+### 3.2. Secure multi-UAV telemetry modeling
 
-The telemetry sources include:
+A controlled simulation-based telemetry generator is used to model secure multi-UAV mission scenarios under cyber-physical attack conditions. Each mission consists of a swarm of UAV nodes operating over mission time. The simulated telemetry is designed to represent the information streams required for mission-state assessment, including communication reliability, navigation integrity, energy state, mission progress, coverage quality, and energy consumption.
 
-1. Communication telemetry
-2. Navigation telemetry
-3. Energy telemetry
-4. Mission-progress telemetry
-5. Coverage telemetry
+The telemetry feature vector for UAV node n at timestep t is represented as:
 
-The nine telemetry features are:
+x_t,n = [packet_loss_rate, latency_ms, route_deviation_m, gps_jump_m, velocity_inconsistency, battery_level, mission_progress, zone_coverage, energy_consumption].
 
-1. packet_loss_rate
-2. latency_ms
-3. route_deviation_m
-4. gps_jump_m
-5. velocity_inconsistency
-6. battery_level
-7. mission_progress
-8. zone_coverage
-9. energy_consumption
+The mission-state label y belongs to one of eight classes:
 
-The mission-state classes are:
+normal, jamming, spoofing, tampering, jamming-spoofing, jamming-tampering, spoofing-tampering, and combined attack.
 
-1. normal
-2. jamming
-3. spoofing
-4. tampering
-5. jamming-spoofing
-6. jamming-tampering
-7. spoofing-tampering
-8. combined attack
+The attack generation process introduces random attack onset, attack duration, UAV-level variation, and local exposure intensity. This design avoids a completely deterministic attack pattern and allows the model to learn mission-state degradation from heterogeneous telemetry signals. Jamming primarily affects packet loss and latency. Spoofing affects route deviation, GPS jumps, and velocity inconsistency. Tampering affects battery state, mission progress, energy consumption, and coverage reporting. Combined attacks affect multiple telemetry groups simultaneously. This makes the benchmark suitable for evaluating cyber-physical mission assurance rather than only simple anomaly classification.
 
-The generator introduces random attack onset, attack duration, UAV-level variation, jammer proximity, and local exposure intensity. This creates a controlled high-confidence benchmark for evaluating secure mission-state prediction under cyber-physical uncertainty.
+### 3.3. Graph-temporal mission-window representation
 
-## 3.3 Graph-Temporal Mission-Window Construction
+Raw mission telemetry is converted into graph-temporal mission windows. Each sample is represented as a three-dimensional tensor:
 
-Raw UAV telemetry is converted into graph-temporal mission windows to preserve node-level and temporal mission structure [R51–R59]. Each sample is represented as:
+X ∈ R^(T × N × F),
 
-X ∈ R^(T × N × F)
+where T is the temporal window length, N is the number of UAV nodes, and F is the number of telemetry features. In the final experiment, T = 20, N = 20, and F = 9. Therefore, each mission-window sample has the shape:
 
-where:
+X ∈ R^(20 × 20 × 9).
 
-* T is the temporal window length
-* N is the number of UAV nodes
-* F is the number of telemetry features
+This representation is central to TRUST-Swarm. A flat feature vector would lose node-level and temporal structure. A simple time-series representation would preserve time but may not explicitly represent the relationship among UAV nodes. The graph-temporal mission window preserves three forms of information: mission-time evolution, UAV-node structure, and telemetry-feature heterogeneity. This allows the prediction layer to reason over how cyber-physical degradation emerges across nodes and time.
 
-In the final experiment:
+### 3.4. Graph-Temporal Transformer prediction layer
 
-* T = 20 timesteps
-* N = 20 UAV nodes
-* F = 9 telemetry features
+The Graph-Temporal Transformer is used as the main intelligent prediction model. The model receives a graph-temporal input tensor X and produces a probability distribution over mission-state classes. The architecture consists of five stages: telemetry feature projection, UAV-node attention, temporal transformer encoding, fused mission embedding, and mission-state classification.
 
-This representation preserves three types of structure:
+First, each telemetry vector is projected into a latent feature space:
 
-1. temporal mission evolution
-2. UAV-node structure
-3. heterogeneous telemetry-feature structure
+h_t,n = W_f x_t,n + b_f,
 
-The graph-temporal mission window allows TRUST-Swarm to reason over mission degradation across nodes, time, and telemetry sources.
+where x_t,n is the telemetry feature vector for UAV node n at timestep t, W_f is a learnable projection matrix, b_f is a bias term, and h_t,n is the latent telemetry embedding.
 
-## 3.4 Graph-Temporal Intelligent Prediction Layer
+Second, UAV-node attention is used to model relationships among UAV nodes at each timestep. For the node embeddings at time t, query, key, and value projections are computed as:
 
-The Graph-Temporal Transformer is used as the main intelligent prediction model, drawing on attention, transformer, graph neural network, and temporal graph learning foundations [R51, R53, R54, R56, R58]. The model receives an input tensor with shape:
+Q_t = H_t W_Q, K_t = H_t W_K, V_t = H_t W_V.
 
-batch_size × window_size × num_uavs × num_features
+The node-attention output is then computed as:
 
-The model contains:
+A_t = softmax((Q_t K_t^T) / sqrt(d)) V_t,
 
-1. telemetry feature projection
-2. UAV-node attention
-3. temporal transformer encoding
-4. fused mission embedding
-5. mission-state classifier
+where d is the hidden dimension. This operation allows the model to learn how UAV nodes influence each other during mission degradation.
 
-The model learns UAV-node relationships, temporal attack progression, and mission-state degradation patterns. Its output is a probability distribution over mission-state classes.
+Third, the sequence of node-attended embeddings is processed by a temporal transformer encoder. This stage captures mission-time evolution, including attack onset, progression, persistence, and combined degradation patterns. The temporal encoder produces a fused mission representation that summarizes the graph-temporal window.
 
-## 3.5 Temporal Baseline Models
+Fourth, the fused representation is passed to a classifier:
 
-Three temporal baseline models are evaluated to compare TRUST-Swarm against recurrent and convolutional sequence-learning baselines [R60–R63]:
+p(y | X) = softmax(W_c z + b_c),
 
-1. LSTM
-2. GRU
-3. 1D-CNN
+where z is the fused mission embedding, W_c and b_c are classifier parameters, and p(y | X) is the predicted probability distribution over mission-state classes.
 
-These baselines evaluate whether conventional temporal models can classify mission states from the same graph-window telemetry. The 1D-CNN baseline achieved the strongest in-distribution classification performance, so TRUST-Swarm is not framed as the best raw classifier. Instead, the framework is evaluated as a high-confidence computing pipeline that adds calibration, OOD testing, explanation, and recovery reasoning.
+This model is designed to capture both relational and temporal structure. However, TRUST-Swarm does not rely on architectural novelty alone. The Graph-Temporal Transformer is evaluated as one component inside a high-confidence computing pipeline that also includes calibration, OOD testing, traceability, ablation, runtime profiling, and recovery reasoning.
 
-## 3.6 Confidence-Aware Reliability Evaluation
+### 3.5. Temporal baseline models
 
-High-confidence computing requires reliable prediction confidence. TRUST-Swarm evaluates prediction reliability using calibration and uncertainty metrics commonly used to assess probabilistic prediction reliability [R37–R43]:
+To avoid overclaiming the Graph-Temporal Transformer, TRUST-Swarm compares it against three temporal baseline models: LSTM, GRU, and 1D-CNN. These models receive the same mission-window data after reshaping into appropriate temporal input formats. LSTM and GRU baselines evaluate recurrent sequence learning, while the 1D-CNN baseline evaluates local temporal signature extraction.
 
-1. Expected Calibration Error
-2. Brier score
-3. mean predictive confidence
-4. predictive entropy
+The baseline comparison is important because high-confidence computing requires honest interpretation. If a simpler model achieves stronger raw classification accuracy, the proposed framework should not claim classifier superiority. Instead, the results should distinguish between raw classification and assurance-level contribution. In TRUST-Swarm, the 1D-CNN baseline achieves stronger in-distribution classification performance, while the full framework contributes broader assurance evidence through calibration, OOD stress testing, explanation, ablation, runtime feasibility, and recovery reasoning.
 
-Monte Carlo dropout is used during uncertainty evaluation to estimate predictive uncertainty. This reliability layer helps determine whether a mission-state prediction should be trusted, monitored, escalated, or passed to the recovery-reasoning layer.
+### 3.6. Confidence-aware reliability evaluation
 
-## 3.7 OOD-Aware Cyber-Physical Stress Testing
+Prediction reliability is evaluated using calibration and uncertainty metrics. TRUST-Swarm reports Expected Calibration Error, Brier score, predictive confidence, predictive entropy, and low-confidence rate. These metrics help determine whether mission-state predictions are trustworthy.
 
-Operational UAV swarms may face unseen cyber-physical shifts not represented during training. TRUST-Swarm evaluates OOD behavior under five stress conditions, motivated by OOD and dataset-shift evaluation literature [R43–R46]:
+Expected Calibration Error measures the gap between predicted confidence and empirical accuracy across confidence bins:
 
-1. stealth jamming
-2. slow GPS drift
-3. intermittent tampering
-4. delayed combined attack
-5. unseen swarm noise
+ECE = Σ_m (|B_m| / n) |acc(B_m) − conf(B_m)|,
 
-For each condition, the framework reports:
+where B_m is the set of samples in bin m, n is the total number of samples, acc(B_m) is the empirical accuracy in the bin, and conf(B_m) is the mean predicted confidence.
 
-1. accuracy
-2. macro F1
-3. confidence
-4. entropy
-5. low-confidence rate
+The Brier score measures the mean squared difference between predicted probabilities and one-hot labels:
 
-This stage is designed to expose mission-risk conditions where predictions degrade or confidence becomes unreliable. The goal is not to claim complete OOD reliability, but to evaluate vulnerability under unseen cyber-physical conditions.
+Brier = (1/n) Σ_i Σ_k (p_i,k − y_i,k)^2.
 
-## 3.8 Traceable Explanation Layer
+Predictive entropy is computed as:
 
-TRUST-Swarm uses perturbation-based feature importance to provide traceable mission-risk evidence, following the broader motivation of explainability and feature-attribution methods in trustworthy AI [R47–R50]. First, baseline macro F1 is computed. Then, each telemetry feature is replaced with its mean value, and macro F1 is recomputed.
+H(p_i) = −Σ_k p_i,k log(p_i,k).
 
-Feature importance is calculated as:
+A low ECE indicates that the model’s confidence is well aligned with empirical correctness. A lower Brier score indicates better probabilistic prediction quality. Higher entropy indicates greater uncertainty. In mission assurance, these metrics are important because uncertain predictions may require monitoring, escalation, or recovery-oriented response.
 
-Feature importance = baseline macro F1 − perturbed macro F1
+### 3.7. OOD cyber-physical stress testing
 
-A larger macro-F1 drop indicates that the feature has greater influence on the mission-state prediction.
+OOD stress testing evaluates how the model behaves under unseen cyber-physical shifts. TRUST-Swarm evaluates five OOD conditions: stealth jamming, slow GPS drift, intermittent tampering, delayed combined attack, and unseen swarm noise. These conditions are designed to differ from the in-distribution training patterns and expose hidden mission-risk behavior.
 
-The most influential telemetry drivers include:
+For each OOD condition, the framework reports accuracy, macro F1, mean confidence, predictive entropy, and low-confidence rate. The objective is not to claim complete OOD reliability. Instead, the objective is to identify mission conditions where predictions degrade or confidence becomes unreliable. This is a high-confidence computing requirement because deployed autonomous systems must be evaluated not only on familiar test data, but also under shifted conditions that resemble adversarial mission uncertainty.
 
-1. latency_ms
-2. zone_coverage
-3. route_deviation_m
-4. mission_progress
-5. gps_jump_m
+### 3.8. Traceable explanation layer
 
-These features correspond to operationally meaningful cyber-physical mission risks, including communication degradation, coverage loss, navigation disruption, mission-progress interruption, and spoofing-related displacement.
+TRUST-Swarm uses perturbation-based feature importance to provide traceable mission-risk evidence. The method first computes baseline macro F1 on the evaluation set. Then, each telemetry feature is replaced by its mean value, and macro F1 is recomputed. Feature importance is calculated as:
 
-## 3.9 Recovery-Oriented Reasoning Layer
+I_f = F1_base − F1_perturbed(f),
 
-TRUST-Swarm includes a PPO-based recovery-reasoning scaffold motivated by reinforcement learning, safe RL, multi-agent decision support, and cyber-physical resilience literature [R64–R80]. The recovery layer receives mission-state predictions, confidence scores, entropy, and mission-risk indicators.
+where I_f is the importance score for feature f, F1_base is the baseline macro F1, and F1_perturbed(f) is the macro F1 after perturbing feature f.
 
-The action space includes:
+A larger macro-F1 drop indicates that the feature has stronger influence on mission-state prediction. This method is simple, model-agnostic, and operationally interpretable. In the final analysis, latency, zone coverage, route deviation, mission progress, and GPS jump emerge as the most influential mission-risk drivers. These features correspond to communication degradation, coverage loss, navigation disruption, mission-progress interruption, and spoofing-related displacement.
 
-1. continue
-2. monitor
-3. reroute
-4. reassign
-5. isolate node
-6. return to base
+### 3.9. Recovery-oriented reasoning scaffold
 
-This module is not claimed as a operationally deployable UAV controller. It is included to demonstrate how high-confidence prediction outputs can support recovery-oriented mission reasoning.
+Mission assurance should connect prediction evidence to possible response reasoning. TRUST-Swarm includes a PPO-based recovery-reasoning scaffold. The recovery state includes mission-state prediction, confidence, entropy, and mission-risk indicators. The action space includes continue, monitor, reroute, reassign, isolate node, and return to base.
 
-## 3.10 Experimental Protocol
+The purpose of this module is not to claim operational UAV control. It is included to demonstrate how high-confidence prediction outputs can support response-oriented mission reasoning. For example, a high-confidence spoofing prediction with route deviation and GPS jump as important drivers may suggest rerouting or monitoring. A combined attack with low confidence and high entropy may require escalation or return-to-base reasoning. This layer connects recognition, confidence, explanation, and response support.
 
-The final evaluation uses three random seeds:
+### 3.10. Ablation and runtime evaluation
 
-* 42
-* 123
-* 2026
+TRUST-Swarm includes ablation analysis to evaluate the contribution of key framework components. Architectural ablations remove UAV-node attention and temporal transformer reasoning. Framework-level ablations remove calibration evidence, OOD evidence, explainability evidence, or recovery support. This design distinguishes between classification components and assurance components.
 
-For each seed, the telemetry generator produces:
+Runtime and complexity profiling is also included. The profiling reports model parameters, model size, inference latency per batch, inference latency per sample, throughput, training-step time, and GPU memory use. These results are important because a high-confidence intelligent computing framework should not only report accuracy but also provide evidence about practical computational feasibility.
 
-* 300 mission runs
-* 240 timesteps per mission
-* 20 UAVs per mission
-* 1,440,000 raw telemetry rows
-* 66,300 graph-temporal mission windows
+### 3.11. Methodology summary
 
-Each model is trained for 30 epochs using a batch size of 128. Results are aggregated across seeds using mean and standard deviation.
-
-## 3.11 Summary
-
-TRUST-Swarm operationalizes high-confidence computing for secure UAV swarm mission assurance through six integrated layers: secure telemetry modeling, graph-temporal prediction, confidence calibration, OOD stress testing, traceable explanation, and recovery-oriented reasoning.
-
-This methodology follows the High-Confidence Computing style of presenting a unified framework rather than an isolated model [R01–R03].
-
-<!-- CITATIONS_INSERTED_METHODOLOGY_V1 -->
+The TRUST-Swarm methodology operationalizes high-confidence computing for secure UAV swarm mission assurance. It models cyber-physical mission telemetry, constructs graph-temporal mission windows, evaluates intelligent prediction, measures confidence reliability, tests OOD vulnerability, explains mission-risk drivers, analyzes framework components, profiles computational feasibility, and connects prediction outputs to recovery-oriented reasoning. This integrated design supports the central claim of the paper: secure UAV swarm mission assurance requires more than classification accuracy; it requires high-confidence evidence across reliability, robustness, traceability, and response support.
 
 ## 4. Experimental Setup
 

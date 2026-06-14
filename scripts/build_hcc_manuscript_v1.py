@@ -8,7 +8,7 @@ parts = [
     ROOT / "docs" / "hcc_title_abstract_contributions_v2.md",
     ROOT / "docs" / "hcc_introduction_v2.md",
     ROOT / "docs" / "hcc_related_work_v2.md",
-    ROOT / "docs" / "hcc_methodology_v1.md",
+    ROOT / "docs" / "hcc_methodology_v2.md",
     ROOT / "docs" / "hcc_experimental_setup_v1.md",
     ROOT / "docs" / "hcc_results_discussion_v1.md",
 ]
@@ -36,6 +36,7 @@ for path in parts:
     text = text.replace("# High-Confidence Computing Related Work v1", "")
     text = text.replace("# High-Confidence Computing Related Work v2", "")
     text = text.replace("# High-Confidence Computing Methodology v1", "")
+    text = text.replace("# High-Confidence Computing Methodology v2", "")
     text = text.replace("# High-Confidence Computing Experimental Setup v1", "")
     text = text.replace("# High-Confidence Computing Results and Discussion v1", "")
 
