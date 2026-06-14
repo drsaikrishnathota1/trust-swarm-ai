@@ -1,7 +1,7 @@
 # HCC Manuscript Quality Check
 
 - Manuscript: `manuscript/TRUST-Swarm-HCC-manuscript-v1.md`
-- Approximate word count: 6598
+- Approximate word count: 6730
 
 ## Required Sections
 
@@ -17,26 +17,25 @@
 
 ## HCC Framing Terms
 
-- PASS: `high-confidence` appears 61 time(s)
+- PASS: `high-confidence` appears 59 time(s)
 - PASS: `secure` appears 46 time(s)
 - PASS: `intelligent computing` appears 22 time(s)
-- PASS: `calibration` appears 34 time(s)
-- PASS: `ood` appears 54 time(s)
+- PASS: `calibration` appears 35 time(s)
+- PASS: `ood` appears 55 time(s)
 - PASS: `traceable` appears 24 time(s)
 - PASS: `recovery` appears 63 time(s)
 - PASS: `mission assurance` appears 28 time(s)
 
 ## Overclaim Scan
 
-- CHECK: `perfect ood` appears 1 time(s)
-- CHECK: `deployment-ready` appears 1 time(s)
+- PASS: No major overclaim phrases found
 
 ## Honesty / Limitation Scan
 
 - PASS: `not positioned as the best standalone classifier` appears 1 time(s)
 - PASS: `synthetic` appears 6 time(s)
 - PASS: `future work` appears 5 time(s)
-- PASS: `not claimed as a deployment-ready` appears 1 time(s)
+- CHECK: `not claimed as a deployment-ready` appears 0 time(s)
 
 ## Tables / Evidence Scan
 
