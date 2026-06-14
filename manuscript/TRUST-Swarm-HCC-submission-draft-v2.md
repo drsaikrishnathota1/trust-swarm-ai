@@ -161,7 +161,7 @@ This positioning aligns TRUST-Swarm with High-Confidence Computing because the c
 
 ## 3. Methodology
 
-This section presents TRUST-Swarm as a high-confidence graph-temporal intelligent computing framework for secure multi-UAV mission assurance under cyber-physical attacks. The framework is designed to support secure prediction, calibrated confidence, OOD vulnerability analysis, traceable explanation, and recovery-oriented reasoning.
+This section presents TRUST-Swarm as a high-confidence graph-temporal intelligent computing framework for secure multi-UAV mission assurance under cyber-physical attacks. The framework is designed to support secure prediction, calibrated confidence, OOD vulnerability analysis, traceable explanation, and recovery-oriented reasoning [R01–R03, R21–R33, R37–R50, R64–R80].
 
 ## 3.1 Framework Overview
 
@@ -178,7 +178,7 @@ The purpose of the framework is not only to classify cyber-physical mission stat
 
 ## 3.2 Secure Multi-UAV Telemetry Generation
 
-A controlled simulation-based telemetry generator is used to create multi-UAV cyber-physical mission scenarios. Each mission contains a swarm of UAVs operating across mission time under normal or adversarial conditions.
+A controlled simulation-based telemetry generator is used to create multi-UAV cyber-physical mission scenarios. Each mission contains a swarm of UAVs operating across mission time under normal or adversarial conditions [R21–R28, R31–R33].
 
 The telemetry sources include:
 
@@ -215,7 +215,7 @@ The generator introduces random attack onset, attack duration, UAV-level variati
 
 ## 3.3 Graph-Temporal Mission-Window Construction
 
-Raw UAV telemetry is converted into graph-temporal mission windows. Each sample is represented as:
+Raw UAV telemetry is converted into graph-temporal mission windows to preserve node-level and temporal mission structure [R51–R59]. Each sample is represented as:
 
 X ∈ R^(T × N × F)
 
@@ -241,7 +241,7 @@ The graph-temporal mission window allows TRUST-Swarm to reason over mission degr
 
 ## 3.4 Graph-Temporal Intelligent Prediction Layer
 
-The Graph-Temporal Transformer is used as the main intelligent prediction model. The model receives an input tensor with shape:
+The Graph-Temporal Transformer is used as the main intelligent prediction model, drawing on attention, transformer, graph neural network, and temporal graph learning foundations [R51, R53, R54, R56, R58]. The model receives an input tensor with shape:
 
 batch_size × window_size × num_uavs × num_features
 
@@ -257,7 +257,7 @@ The model learns UAV-node relationships, temporal attack progression, and missio
 
 ## 3.5 Temporal Baseline Models
 
-Three temporal baseline models are evaluated:
+Three temporal baseline models are evaluated to compare TRUST-Swarm against recurrent and convolutional sequence-learning baselines [R60–R63]:
 
 1. LSTM
 2. GRU
@@ -267,7 +267,7 @@ These baselines evaluate whether conventional temporal models can classify missi
 
 ## 3.6 Confidence-Aware Reliability Evaluation
 
-High-confidence computing requires reliable prediction confidence. TRUST-Swarm evaluates prediction reliability using:
+High-confidence computing requires reliable prediction confidence. TRUST-Swarm evaluates prediction reliability using calibration and uncertainty metrics commonly used to assess probabilistic prediction reliability [R37–R43]:
 
 1. Expected Calibration Error
 2. Brier score
@@ -278,7 +278,7 @@ Monte Carlo dropout is used during uncertainty evaluation to estimate predictive
 
 ## 3.7 OOD-Aware Cyber-Physical Stress Testing
 
-Operational UAV swarms may face unseen cyber-physical shifts not represented during training. TRUST-Swarm evaluates OOD behavior under five stress conditions:
+Operational UAV swarms may face unseen cyber-physical shifts not represented during training. TRUST-Swarm evaluates OOD behavior under five stress conditions, motivated by OOD and dataset-shift evaluation literature [R43–R46]:
 
 1. stealth jamming
 2. slow GPS drift
@@ -298,7 +298,7 @@ This stage is designed to expose mission-risk conditions where predictions degra
 
 ## 3.8 Traceable Explanation Layer
 
-TRUST-Swarm uses perturbation-based feature importance to provide traceable mission-risk evidence. First, baseline macro F1 is computed. Then, each telemetry feature is replaced with its mean value, and macro F1 is recomputed.
+TRUST-Swarm uses perturbation-based feature importance to provide traceable mission-risk evidence, following the broader motivation of explainability and feature-attribution methods in trustworthy AI [R47–R50]. First, baseline macro F1 is computed. Then, each telemetry feature is replaced with its mean value, and macro F1 is recomputed.
 
 Feature importance is calculated as:
 
@@ -318,7 +318,7 @@ These features correspond to operationally meaningful cyber-physical mission ris
 
 ## 3.9 Recovery-Oriented Reasoning Layer
 
-TRUST-Swarm includes a PPO-based recovery-reasoning scaffold. The recovery layer receives mission-state predictions, confidence scores, entropy, and mission-risk indicators.
+TRUST-Swarm includes a PPO-based recovery-reasoning scaffold motivated by reinforcement learning, safe RL, multi-agent decision support, and cyber-physical resilience literature [R64–R80]. The recovery layer receives mission-state predictions, confidence scores, entropy, and mission-risk indicators.
 
 The action space includes:
 
@@ -353,7 +353,9 @@ Each model is trained for 30 epochs using a batch size of 128. Results are aggre
 
 TRUST-Swarm operationalizes high-confidence computing for secure UAV swarm mission assurance through six integrated layers: secure telemetry modeling, graph-temporal prediction, confidence calibration, OOD stress testing, traceable explanation, and recovery-oriented reasoning.
 
-This methodology follows the High-Confidence Computing style of presenting a unified framework rather than an isolated model.
+This methodology follows the High-Confidence Computing style of presenting a unified framework rather than an isolated model [R01–R03].
+
+<!-- CITATIONS_INSERTED_METHODOLOGY_V1 -->
 
 ## 4. Experimental Setup
 
