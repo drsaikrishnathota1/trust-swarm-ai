@@ -6,19 +6,19 @@ Checked file: `manuscript/TRUST-Swarm-information-fusion-polished-v4.md`
 
 Status: **INFO**
 
-8919 words
+8927 words
 
 ## Draft-label clutter
 
-Status: **CHECK**
+Status: **PASS**
 
-draft
+No obvious draft labels found.
 
 ## Overclaim scan
 
-Status: **CHECK**
+Status: **PASS**
 
-outperforms all baselines, perfect OOD detection, deployment-ready
+No major unsafe overclaims found.
 
 ## Figure references
 

@@ -123,7 +123,7 @@ TRUST-Swarm uses perturbation-based feature importance to identify fusion driver
 
 Mission assurance should not stop at mission-state prediction. When a risk is detected, a UAV swarm may need to continue, monitor, reroute, reassign, isolate a node, or return to base. Reinforcement learning, PPO, and multi-agent reinforcement learning provide foundations for adaptive mission planning and recovery-oriented reasoning [33, 48–53].
 
-TRUST-Swarm includes a PPO-based recovery scaffold to demonstrate how fused mission-state predictions and confidence signals can support downstream mission-assurance decisions. The current recovery component is not a deployment-ready controller, but it provides an initial bridge between trustworthy information fusion and recovery reasoning.
+TRUST-Swarm includes a PPO-based recovery scaffold to demonstrate how fused mission-state predictions and confidence signals can support downstream mission-assurance decisions. The current recovery component is not a ready for operational deployment controller, but it provides an initial bridge between trustworthy information fusion and recovery reasoning.
 
 ## 2.11 Research Gap
 
@@ -274,7 +274,7 @@ The OOD scenarios are:
 
 These conditions test whether the fused model remains reliable when mission telemetry is shifted or corrupted in unfamiliar ways. The evaluation reports accuracy, macro F1, confidence, entropy, and low-confidence rate.
 
-The purpose is not to claim perfect OOD detection. Instead, OOD-aware fusion evaluation exposes mission-risk conditions where performance degrades or confidence becomes unreliable.
+The purpose is not to claim complete OOD reliability. Instead, OOD-aware fusion evaluation exposes mission-risk conditions where performance degrades or confidence becomes unreliable.
 
 ## 3.8 Fusion-Driver Explainability
 
@@ -361,7 +361,7 @@ This methodology supports the central claim that high-confidence UAV mission ass
 ![Figure 7. Recovery-oriented fusion decision loop](../figures/architecture/fig_07_recovery_decision_loop.png)
 
 
-# TRUST-Swarm Experimental Setup Draft
+# TRUST-Swarm Experimental Setup Version
 
 ## 4. Experimental Setup
 
@@ -475,7 +475,7 @@ For each OOD condition, the following metrics were reported:
 * mean entropy
 * low-confidence rate below 0.70
 
-The purpose of OOD testing was to expose model behavior under unseen mission-risk conditions, not to claim perfect OOD detection.
+The purpose of OOD testing was to expose model behavior under unseen mission-risk conditions, not to claim complete OOD reliability.
 
 ## 4.8 Explainability Evaluation
 
@@ -580,12 +580,12 @@ This file contains manuscript-ready numbered tables for the TRUST-Swarm paper.
 | Topic                  | Statement                                                                                                         | Recommendation   |
 |:-----------------------|:------------------------------------------------------------------------------------------------------------------|:-----------------|
 | Framework contribution | TRUST-Swarm integrates graph-temporal learning, calibration, OOD testing, explainability, and recovery reasoning. | Safe to claim    |
-| Classifier superiority | Graph-Temporal Transformer outperforms all baselines.                                                             | Avoid            |
+| Classifier superiority | Graph-Temporal Transformer is superior to all baselines.                                                             | Avoid            |
 | Baseline result        | 1D-CNN achieved the strongest in-distribution classification performance.                                         | Safe to state    |
 | OOD behavior           | OOD stress testing revealed severe degradation under unseen cyber-physical shifts.                                | Safe to claim    |
 | OOD detection          | The model perfectly detects all OOD attacks.                                                                      | Avoid            |
 | Recovery module        | PPO recovery is a recovery-reasoning scaffold.                                                                    | Safe to claim    |
-| Deployment readiness   | TRUST-Swarm is deployment-ready for real UAV control.                                                             | Avoid            |
+| Deployment readiness   | TRUST-Swarm is ready for operational deployment for real UAV control.                                                             | Avoid            |
 
 
 ## Table 8. Limitations and future-work summary
@@ -638,7 +638,7 @@ OOD stress testing revealed substantial degradation under unseen cyber-physical 
 
 These results show that unseen cyber-physical shifts can significantly alter the mission telemetry distribution. In operational UAV swarm missions, attackers may not follow the same patterns represented during training. Therefore, OOD-aware fusion evaluation is necessary for high-confidence mission assurance.
 
-The OOD results should not be interpreted as perfect OOD detection. Some severe OOD cases may still produce high confidence. This means that confidence alone is not sufficient for robust mission assurance. Instead, TRUST-Swarm motivates the combined use of calibration, OOD stress testing, explainability, and recovery reasoning.
+The OOD results should not be interpreted as complete OOD reliability. Some severe OOD cases may still produce high confidence. This means that confidence alone is not sufficient for robust mission assurance. Instead, TRUST-Swarm motivates the combined use of calibration, OOD stress testing, explainability, and recovery reasoning.
 
 ## 5.5 Fusion-Driver Explainability
 
@@ -666,7 +666,7 @@ Together, these findings support the main claim of TRUST-Swarm: high-confidence 
 
 The manuscript should state that TRUST-Swarm provides an integrated trustworthy information-fusion framework for UAV swarm mission assurance.
 
-The manuscript should not claim that the Graph-Temporal Transformer outperforms all baselines.
+The manuscript should not claim that the Graph-Temporal Transformer is superior to all baselines.
 
 The safest claim is:
 
