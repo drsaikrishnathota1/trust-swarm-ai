@@ -1,7 +1,7 @@
 # HCC Manuscript Quality Check
 
 - Manuscript: `manuscript/TRUST-Swarm-HCC-manuscript-v1.md`
-- Approximate word count: 6074
+- Approximate word count: 6440
 
 ## Required Sections
 
@@ -17,13 +17,13 @@
 
 ## HCC Framing Terms
 
-- PASS: `high-confidence` appears 60 time(s)
+- PASS: `high-confidence` appears 61 time(s)
 - PASS: `secure` appears 46 time(s)
 - PASS: `intelligent computing` appears 22 time(s)
-- PASS: `calibration` appears 30 time(s)
-- PASS: `ood` appears 50 time(s)
+- PASS: `calibration` appears 33 time(s)
+- PASS: `ood` appears 53 time(s)
 - PASS: `traceable` appears 24 time(s)
-- PASS: `recovery` appears 60 time(s)
+- PASS: `recovery` appears 63 time(s)
 - PASS: `mission assurance` appears 28 time(s)
 
 ## Overclaim Scan

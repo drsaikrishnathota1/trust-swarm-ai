@@ -62,7 +62,38 @@ TRUST-Swarm includes a PPO-based recovery-reasoning scaffold. The recovery layer
 
 This module is not claimed as a operationally deployable UAV controller. Instead, it demonstrates how high-confidence prediction outputs can support mission-response reasoning. This is important because secure mission assurance should not stop at detection. It should connect risk recognition to response planning.
 
-## 5.7 Discussion Against High-Confidence Computing Standards
+## 5.7 Final Ablation Study
+
+A final HCC ablation study was conducted on the seed-42 graph-temporal dataset using 66,300 mission windows, 20 UAV nodes, 20 timesteps, 9 telemetry features, and 8 mission-state classes. The full Graph-Temporal Transformer achieved an accuracy of 0.9579 and a macro F1 score of 0.8734.
+
+Removing UAV-node attention reduced macro F1 from 0.8734 to 0.7903, showing that swarm-node relational reasoning contributes meaningfully to mission-state recognition. Removing the temporal transformer reduced macro F1 to 0.8237, showing that temporal mission-evolution modeling is also important.
+
+Framework-level ablations do not change classifier accuracy because they remove assurance modules rather than the classifier itself. However, they show what high-confidence evidence is lost when calibration, OOD stress testing, explainability, or recovery reasoning is removed.
+
+| configuration                      |   accuracy |   macro_f1 | calibration_evidence   | ood_evidence   | explanation_evidence   | recovery_support   |
+|:-----------------------------------|-----------:|-----------:|:-----------------------|:---------------|:-----------------------|:-------------------|
+| A0_full_graph_temporal_transformer |     0.9579 |     0.8734 | yes                    | yes            | yes                    | yes                |
+| A1_without_uav_node_attention      |     0.9572 |     0.7903 | yes                    | yes            | yes                    | yes                |
+| A2_without_temporal_transformer    |     0.9507 |     0.8237 | yes                    | yes            | yes                    | yes                |
+| A3_without_uncertainty_calibration |     0.9579 |     0.8734 | no                     | yes            | yes                    | yes                |
+| A4_without_ood_stress_testing      |     0.9579 |     0.8734 | yes                    | no             | yes                    | yes                |
+| A5_without_explainability          |     0.9579 |     0.8734 | yes                    | yes            | no                     | yes                |
+| A6_without_recovery_reasoning      |     0.9579 |     0.8734 | yes                    | yes            | yes                    | no                 |
+
+## 5.8 Runtime and Complexity Analysis
+
+Runtime and complexity profiling was conducted on an NVIDIA H200 GPU using batch size 128, 20 UAV nodes, 20 timesteps, and 9 telemetry features. The Graph-Temporal Transformer has 680,840 trainable parameters and a model size of 2.618 MB. Its inference latency was 2.267 ms per batch and 0.0177 ms per graph-temporal mission window, corresponding to approximately 56,458 windows per second.
+
+Although the Graph-Temporal Transformer is heavier than LSTM, GRU, and 1D-CNN baselines, the profiling results show that it remains computationally practical for high-throughput mission-window inference on modern GPU hardware.
+
+| model                    |   parameters |   model_size_mb |   inference_batch_latency_ms |   inference_sample_latency_ms |   throughput_windows_per_second |   single_train_step_ms |
+|:-------------------------|-------------:|----------------:|-----------------------------:|------------------------------:|--------------------------------:|-----------------------:|
+| LSTM                     |       308616 |           1.181 |                        0.214 |                        0.0017 |                        599007   |                  1.674 |
+| GRU                      |       235912 |           0.904 |                        0.177 |                        0.0014 |                        724111   |                  1.48  |
+| CNN1D                    |       136840 |           0.531 |                        0.211 |                        0.0016 |                        606987   |                  1.465 |
+| GraphTemporalTransformer |       680840 |           2.618 |                        2.267 |                        0.0177 |                         56458.4 |                  9.938 |
+
+## 5.9 Discussion Against High-Confidence Computing Standards
 
 The results show that TRUST-Swarm is better framed as a high-confidence intelligent computing framework than as a pure classification model.
 
@@ -73,7 +104,7 @@ Therefore, the current results are strong enough to justify a manuscript foundat
 1. Ablation study to show the value of each TRUST-Swarm module.
 2. Runtime and complexity analysis to show practical computing feasibility.
 
-## 5.8 Safe Final Interpretation
+## 5.10 Safe Final Interpretation
 
 The safe interpretation is:
 
