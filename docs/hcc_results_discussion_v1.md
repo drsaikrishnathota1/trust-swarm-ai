@@ -2,7 +2,7 @@
 
 ## 5. Results and Discussion
 
-This section evaluates TRUST-Swarm as a high-confidence graph-temporal intelligent computing framework for secure multi-UAV mission assurance. The evaluation focuses on five questions:
+This section evaluates TRUST-Swarm as a high-confidence graph-temporal intelligent computing framework for secure multi-UAV mission assurance. The evaluation follows HCC-style framework evaluation by combining prediction, calibration, OOD stress testing, traceable explanation, recovery reasoning, ablation, and runtime feasibility evidence [R01–R03]. The evaluation focuses on five questions:
 
 1. Can TRUST-Swarm recognize cyber-physical mission states?
 2. How does the Graph-Temporal Transformer compare with temporal baselines?
@@ -14,13 +14,13 @@ This section evaluates TRUST-Swarm as a high-confidence graph-temporal intellige
 
 Across three random seeds, the Graph-Temporal Transformer achieved a mean accuracy of 0.9647 and a mean macro F1 score of 0.8750. The mean macro precision was 0.8935, and the mean macro recall was 0.8700.
 
-These results show that the graph-temporal prediction layer can learn meaningful mission-state patterns from UAV telemetry under cyber-physical attack conditions. The model captures mission-time evolution, UAV-node structure, and telemetry-feature interactions across communication, navigation, energy, mission-progress, and coverage signals.
+These results show that the graph-temporal prediction layer can learn meaningful mission-state patterns from UAV telemetry under cyber-physical attack conditions. The model captures mission-time evolution, UAV-node structure, and telemetry-feature interactions across communication, navigation, energy, mission-progress, and coverage signals [R21–R28, R51–R59].
 
 From a High-Confidence Computing perspective, this result demonstrates the intelligent computing component of TRUST-Swarm. However, mission-state recognition alone is not sufficient for high-confidence autonomous operation. The framework must also evaluate reliability, uncertainty, OOD behavior, traceability, and recovery support.
 
 ## 5.2 Baseline Comparison
 
-The baseline comparison included LSTM, GRU, and 1D-CNN models. The 1D-CNN baseline achieved the strongest in-distribution classification performance, with a mean accuracy of 0.9987 and a mean macro F1 score of 0.9971. The LSTM and GRU baselines achieved mean macro F1 scores of 0.9608 and 0.9288, respectively.
+The baseline comparison included LSTM, GRU, and 1D-CNN models [R60–R63]. The 1D-CNN baseline achieved the strongest in-distribution classification performance, with a mean accuracy of 0.9987 and a mean macro F1 score of 0.9971. The LSTM and GRU baselines achieved mean macro F1 scores of 0.9608 and 0.9288, respectively.
 
 This result shows that the synthetic telemetry benchmark contains strong local temporal signatures that are effectively captured by convolutional temporal learning. Therefore, the Graph-Temporal Transformer should not be claimed as the best raw classifier.
 
@@ -28,7 +28,7 @@ The correct interpretation is that TRUST-Swarm contributes a high-confidence sec
 
 ## 5.3 Confidence Calibration Results
 
-The Graph-Temporal Transformer produced strong in-distribution calibration. Across three seeds, the model achieved a mean Expected Calibration Error of 0.0088 and a mean Brier score of 0.0531. The mean predictive confidence was 0.9601, and the mean predictive entropy was 0.0986.
+The Graph-Temporal Transformer produced strong in-distribution calibration. Across three seeds, the model achieved a mean Expected Calibration Error of 0.0088 and a mean Brier score of 0.0531. The mean predictive confidence was 0.9601, and the mean predictive entropy was 0.0986 [R37–R43].
 
 These results support the high-confidence computing objective because the model provides not only mission-state probabilities but also reliability evidence. A low Expected Calibration Error indicates that predicted confidence is well aligned with empirical correctness under in-distribution conditions.
 
@@ -36,7 +36,7 @@ For secure UAV swarm mission assurance, calibrated confidence is important becau
 
 ## 5.4 OOD Cyber-Physical Stress Testing
 
-OOD stress testing revealed substantial performance degradation under unseen cyber-physical shifts. The in-distribution macro F1 score was 0.8750. Intermittent tampering reduced macro F1 to 0.5965. More severe shifts caused larger reductions: slow GPS drift achieved a macro F1 score of 0.1701, stealth jamming achieved 0.0779, and delayed combined attacks achieved 0.0521.
+OOD stress testing revealed substantial performance degradation under unseen cyber-physical shifts. The in-distribution macro F1 score was 0.8750. Intermittent tampering reduced macro F1 to 0.5965. More severe shifts caused larger reductions: slow GPS drift achieved a macro F1 score of 0.1701, stealth jamming achieved 0.0779, and delayed combined attacks achieved 0.0521 [R43–R46].
 
 These findings show that cyber-physical distribution shifts can significantly degrade mission-state recognition even when in-distribution performance is strong. This is an important high-confidence computing result because it exposes failure modes that standard test accuracy would hide.
 
@@ -44,7 +44,7 @@ The OOD results should not be interpreted as complete OOD reliability. Some seve
 
 ## 5.5 Traceable Mission-Risk Explanation
 
-Perturbation-based feature importance identified latency, zone coverage, route deviation, mission progress, and GPS jump as the most influential mission-risk drivers.
+Perturbation-based feature importance identified latency, zone coverage, route deviation, mission progress, and GPS jump as the most influential mission-risk drivers [R47–R50].
 
 These features are operationally meaningful:
 
@@ -58,13 +58,13 @@ This improves decision traceability. In high-confidence computing, a framework s
 
 ## 5.6 Recovery-Oriented Reasoning
 
-TRUST-Swarm includes a PPO-based recovery-reasoning scaffold. The recovery layer receives mission-state prediction, confidence, entropy, and mission-risk indicators. It maps these inputs to recovery actions such as continue, monitor, reroute, reassign, isolate node, and return to base.
+TRUST-Swarm includes a PPO-based recovery-reasoning scaffold [R64–R80]. The recovery layer receives mission-state prediction, confidence, entropy, and mission-risk indicators. It maps these inputs to recovery actions such as continue, monitor, reroute, reassign, isolate node, and return to base.
 
-This module is not claimed as a operationally deployable UAV controller. Instead, it demonstrates how high-confidence prediction outputs can support mission-response reasoning. This is important because secure mission assurance should not stop at detection. It should connect risk recognition to response planning.
+This module is not claimed as an operationally deployable UAV controller. Instead, it demonstrates how high-confidence prediction outputs can support mission-response reasoning. This is important because secure mission assurance should not stop at detection. It should connect risk recognition to response planning [R64–R80].
 
 ## 5.7 Final Ablation Study
 
-A final HCC ablation study was conducted on the seed-42 graph-temporal dataset using 66,300 mission windows, 20 UAV nodes, 20 timesteps, 9 telemetry features, and 8 mission-state classes. The full Graph-Temporal Transformer achieved an accuracy of 0.9579 and a macro F1 score of 0.8734.
+A final HCC ablation study was conducted on the seed-42 graph-temporal dataset using 66,300 mission windows, 20 UAV nodes, 20 timesteps, 9 telemetry features, and 8 mission-state classes. The full Graph-Temporal Transformer achieved an accuracy of 0.9579 and a macro F1 score of 0.8734. The ablation design supports framework-level HCC evaluation by showing how architectural and assurance components contribute to the evidence pipeline [R01–R03, R51–R59].
 
 Removing UAV-node attention reduced macro F1 from 0.8734 to 0.7903, showing that swarm-node relational reasoning contributes meaningfully to mission-state recognition. Removing the temporal transformer reduced macro F1 to 0.8237, showing that temporal mission-evolution modeling is also important.
 
@@ -82,7 +82,7 @@ Framework-level ablations do not change classifier accuracy because they remove 
 
 ## 5.8 Runtime and Complexity Analysis
 
-Runtime and complexity profiling was conducted on an NVIDIA H200 GPU using batch size 128, 20 UAV nodes, 20 timesteps, and 9 telemetry features. The Graph-Temporal Transformer has 680,840 trainable parameters and a model size of 2.618 MB. Its inference latency was 2.267 ms per batch and 0.0177 ms per graph-temporal mission window, corresponding to approximately 56,458 windows per second.
+Runtime and complexity profiling was conducted on an NVIDIA H200 GPU using batch size 128, 20 UAV nodes, 20 timesteps, and 9 telemetry features. The Graph-Temporal Transformer has 680,840 trainable parameters and a model size of 2.618 MB. Its inference latency was 2.267 ms per batch and 0.0177 ms per graph-temporal mission window, corresponding to approximately 56,458 windows per second. This supports practical feasibility evidence expected in high-confidence intelligent computing evaluations [R01–R03].
 
 Although the Graph-Temporal Transformer is heavier than LSTM, GRU, and 1D-CNN baselines, the profiling results show that it remains computationally practical for high-throughput mission-window inference on modern GPU hardware.
 
@@ -99,10 +99,7 @@ The results show that TRUST-Swarm is better framed as a high-confidence intellig
 
 The accepted High-Confidence Computing papers commonly emphasize unified frameworks, multiple evaluation metrics, practical validation, and system-level reasoning. For example, the SDN-IoT DRAFT paper combines traffic prediction, federated learning, zero-trust mechanisms, denoising, and real-world dataset evaluation. The HTTPS assessment paper proposes a unified methodology with testing, examination, interviewing, and real-world website case-study validation. The critical-infrastructure IDS paper integrates detection, classification, privacy preservation, adaptation, and multi-benchmark validation. TRUST-Swarm follows the same framework-oriented direction, but its current limitation is that validation remains synthetic.
 
-Therefore, the current results are strong enough to justify a manuscript foundation, but two additional analyses are needed before final HCC submission:
-
-1. Ablation study to show the value of each TRUST-Swarm module.
-2. Runtime and complexity analysis to show practical computing feasibility.
+Therefore, the current results provide a stronger HCC manuscript foundation because the evaluation now includes mission-state recognition, baseline comparison, calibration, OOD stress testing, traceable explanation, recovery reasoning, final ablation evidence, and runtime/complexity profiling.
 
 ## 5.10 Safe Final Interpretation
 
@@ -114,8 +111,9 @@ The manuscript should not claim:
 
 * the Graph-Temporal Transformer is superior to all baselines;
 * OOD behavior is fully solved;
-* the recovery module is operationally operationally deployable;
+* the recovery module is operationally deployable;
 * synthetic telemetry replaces field UAV validation.
 
 The results support TRUST-Swarm as a secure, intelligent, calibrated, traceable, and recovery-aware mission-assurance framework.
 
+<!-- CITATIONS_INSERTED_RESULTS_V1 -->
