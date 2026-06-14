@@ -3,7 +3,7 @@
 **Target journal:** High-Confidence Computing
 
 
-## HCC-Framed Abstract
+## Abstract
 
 Multi-UAV swarm systems are increasingly deployed in surveillance, reconnaissance, infrastructure inspection, disaster response, logistics, and other cyber-physical missions where autonomous decisions must remain reliable under communication, navigation, telemetry, and environmental uncertainty. In adversarial mission settings, however, communication jamming, GPS spoofing, telemetry tampering, and combined cyber-physical attacks can corrupt the information streams required for swarm coordination and mission-state assessment. Existing UAV security and resilience studies have made important progress in attack detection, secure communication, anomaly recognition, and rule-based response. Nevertheless, many approaches remain focused on classification accuracy or isolated security functions, while providing limited support for calibrated confidence estimation, out-of-distribution (OOD) stress testing, traceable decision evidence, and recovery-oriented mission reasoning. This gap is critical for high-confidence computing because security-critical autonomous systems must evaluate not only what state is predicted, but also whether the prediction is reliable, how it behaves under unseen shifts, why the decision was produced, and how the output can support response planning.
 
@@ -13,7 +13,7 @@ To address this need, this paper presents TRUST-Swarm, a high-confidence graph-t
 
 High-confidence computing; Multi-UAV swarm; Cyber-physical security; Mission assurance; Graph-temporal learning; Uncertainty calibration; Out-of-distribution evaluation; Explainable AI; Recovery reasoning
 
-## HCC Contribution Table
+## Contributions
 
 | High-Confidence Computing Requirement | TRUST-Swarm Component | Manuscript Evidence |
 | ------------------------------------- | -------------------- | ------------------- |
@@ -27,7 +27,7 @@ High-confidence computing; Multi-UAV swarm; Cyber-physical security; Mission ass
 
 ## 1. Introduction
 
-Multi-UAV swarm systems are becoming an important class of cyber-physical intelligent systems. In contrast to single-UAV platforms, a swarm can distribute sensing, increase coverage, improve redundancy, and support cooperative mission execution across large or uncertain environments. These advantages make UAV swarms attractive for surveillance, reconnaissance, border monitoring, disaster response, infrastructure inspection, logistics, search-and-rescue, and defense-oriented mission operations. In such settings, the swarm is not only a collection of flying platforms; it is a distributed decision-making system that depends on communication reliability, navigation integrity, telemetry correctness, energy awareness, coverage consistency, and mission-progress coordination. When these information streams are trustworthy, the swarm can maintain situational awareness and adapt its mission behavior. When they are disrupted, however, autonomous decisions may become unreliable even if individual UAVs remain operational [1–8].
+Multi-UAV swarm systems are becoming an important class of cyber-physical intelligent systems. In contrast to single-UAV platforms, a swarm can distribute sensing, increase coverage, imshow redundancy, and support cooperative mission execution across large or uncertain environments. These advantages make UAV swarms attractive for surveillance, reconnaissance, border monitoring, disaster response, infrastructure inspection, logistics, search-and-rescue, and defense-oriented mission operations. In such settings, the swarm is not only a collection of flying platforms; it is a distributed decision-making system that depends on communication reliability, navigation integrity, telemetry correctness, energy awareness, coverage consistency, and mission-progress coordination. When these information streams are trustworthy, the swarm can maintain situational awareness and adapt its mission behavior. When they are disrupted, however, autonomous decisions may become unreliable even if individual UAVs remain operational [1–8].
 
 The security challenge becomes more serious when UAV swarm missions are exposed to cyber-physical attacks. Communication jamming can increase packet loss and latency, weakening coordination among UAV nodes and delaying mission updates. GPS spoofing can create route deviation, sudden GPS jumps, and velocity inconsistency, causing the swarm to misinterpret location and movement. Telemetry tampering can distort battery state, mission progress, energy consumption, and zone coverage, making the system believe that a mission is safer or more complete than it actually is. Combined attacks can simultaneously degrade communication, navigation, and telemetry integrity. These attacks do not merely create isolated anomalies; they alter the information foundation on which autonomous mission-state prediction and response planning depend [9–14].
 
@@ -83,7 +83,7 @@ UAV swarm telemetry naturally has graph-temporal structure. Each UAV can be trea
 
 Graph-temporal modeling is relevant to UAV mission assurance because cyber-physical attacks often appear as structured mission degradation rather than isolated feature changes. Jamming may affect communication-related features across multiple UAVs. Spoofing may create navigation inconsistencies in a subset of nodes. Tampering may distort telemetry signals related to mission progress or energy state. Combined attacks may create multi-feature and multi-node degradation patterns. A graph-temporal representation allows the model to reason over node relationships, mission-time evolution, and heterogeneous telemetry interactions together.
 
-TRUST-Swarm uses this idea by converting distributed UAV telemetry into graph-temporal mission windows. Each window preserves temporal length, UAV-node structure, and telemetry-feature structure. The Graph-Temporal Transformer is then evaluated as the central prediction layer. This design is not intended to prove that graph-temporal modeling always outperforms all temporal baselines. Instead, it provides an intelligent prediction layer suitable for integration into a broader high-confidence mission-assurance framework.
+TRUST-Swarm uses this idea by converting distributed UAV telemetry into graph-temporal mission windows. Each window preserves temporal length, UAV-node structure, and telemetry-feature structure. The Graph-Temporal Transformer is then evaluated as the central prediction layer. This design is not intended to show that graph-temporal modeling always outperforms all temporal baselines. Instead, it provides an intelligent prediction layer suitable for integration into a broader high-confidence mission-assurance framework.
 
 ### 2.4. Temporal deep-learning baselines
 
@@ -107,7 +107,7 @@ OOD evaluation is therefore essential for high-confidence mission assurance. The
 
 Traceability is another requirement for high-confidence intelligent systems. A mission-assurance framework should not only output a mission-state label; it should also identify which telemetry factors influenced the decision. Explainable AI methods, including LIME, SHAP, saliency analysis, and perturbation-based feature importance, provide foundations for interpreting model behavior [49–52].
 
-TRUST-Swarm uses perturbation-based feature importance to identify mission-risk drivers. The final analysis identifies latency, zone coverage, route deviation, mission progress, and GPS jump as major decision drivers. These features are operationally meaningful because they correspond to communication degradation, mission coverage loss, navigation disruption, mission-progress interruption, and spoofing-related displacement. This improves the traceability of the framework and supports the claim that TRUST-Swarm provides decision evidence rather than opaque classification alone.
+TRUST-Swarm uses perturbation-based feature importance to identify mission-risk drivers. The final analysis identifies latency, zone coverage, route deviation, mission progress, and GPS jump as major decision drivers. These features are operationally meaningful because they correspond to communication degradation, mission coverage loss, navigation disruption, mission-progress interruption, and spoofing-related displacement. This imshows the traceability of the framework and supports the claim that TRUST-Swarm provides decision evidence rather than opaque classification alone.
 
 ### 2.8. Recovery-oriented reinforcement learning and active defense
 
@@ -116,6 +116,8 @@ Mission assurance should not stop after detection. Once a mission risk is identi
 TRUST-Swarm includes a PPO-based recovery-reasoning scaffold to connect prediction outputs with mission-response actions. The recovery layer receives mission-state prediction, confidence, entropy, and risk indicators. It is not claimed as an operational UAV controller. Instead, it demonstrates how high-confidence prediction outputs can support response-oriented mission reasoning. This is aligned with active defense because the framework connects recognition and confidence evidence to possible response pathways.
 
 ### 2.9. Comparison with related research directions
+
+Table 1 summarizes the positioning of TRUST-Swarm against related research directions.
 
 | Research direction | Main focus | Common limitation | TRUST-Swarm positioning |
 | --- | --- | --- | --- |
@@ -139,7 +141,7 @@ This section presents the methodology of TRUST-Swarm, a high-confidence graph-te
 
 ### 3.1. Framework overview
 
-TRUST-Swarm consists of six integrated layers. The first layer generates multi-UAV mission telemetry under normal and adversarial cyber-physical conditions. The second layer converts raw telemetry into graph-temporal mission windows that preserve UAV-node structure, mission-time evolution, and heterogeneous telemetry features. The third layer performs mission-state prediction using a Graph-Temporal Transformer. The fourth layer evaluates prediction reliability using confidence and calibration metrics. The fifth layer evaluates OOD behavior under unseen cyber-physical stress conditions. The sixth layer provides traceable explanation and recovery-oriented reasoning.
+Fig. 1 illustrates the TRUST-Swarm framework architecture. TRUST-Swarm consists of six integrated layers. The first layer generates multi-UAV mission telemetry under normal and adversarial cyber-physical conditions. The second layer converts raw telemetry into graph-temporal mission windows that preserve UAV-node structure, mission-time evolution, and heterogeneous telemetry features. The third layer performs mission-state prediction using a Graph-Temporal Transformer. The fourth layer evaluates prediction reliability using confidence and calibration metrics. The fifth layer evaluates OOD behavior under unseen cyber-physical stress conditions. The sixth layer provides traceable explanation and recovery-oriented reasoning.
 
 The framework can be summarized as follows:
 
@@ -372,7 +374,7 @@ A larger macro-F1 drop indicates that the feature has greater influence on missi
 
 The PPO-based recovery module was evaluated as a recovery-reasoning scaffold. The action space includes continue, monitor, reroute, reassign, isolate node, and return to base. The recovery state includes mission-state prediction, confidence, entropy, and mission-risk indicators.
 
-This module is not claimed as an operationally deployable UAV controller. Instead, it demonstrates how high-confidence prediction outputs can support mission-response reasoning. This is important because mission assurance should not stop at detection. It should connect risk recognition to possible response actions.
+This module is not claimed as an field-deployable UAV controller. Instead, it demonstrates how high-confidence prediction outputs can support mission-response reasoning. This is important because mission assurance should not stop at detection. It should connect risk recognition to possible response actions.
 
 ### 4.13. Ablation and runtime evaluation
 
@@ -392,11 +394,11 @@ This section presents the experimental findings of TRUST-Swarm and interprets th
 
 ### 5.1. In-distribution mission-state recognition
 
-The in-distribution evaluation shows that mission-state recognition is feasible using graph-temporal UAV telemetry. The Graph-Temporal Transformer achieves a mean accuracy of 0.9647 and a mean macro F1 score of 0.8750 across the three-seed evaluation. These values indicate that the model can learn mission-state patterns from communication, navigation, energy, coverage, and mission-progress telemetry. The result is meaningful because the evaluation includes not only normal and single-attack conditions, but also combined cyber-physical attack states.
+Table 2 reports the main in-distribution classification findings. The in-distribution evaluation shows that mission-state recognition is feasible using graph-temporal UAV telemetry. The Graph-Temporal Transformer achieves a mean accuracy of 0.9647 and a mean macro F1 score of 0.8750 across the three-seed evaluation. These values indicate that the model can learn mission-state patterns from communication, navigation, energy, coverage, and mission-progress telemetry. The result is meaningful because the evaluation includes not only normal and single-attack conditions, but also combined cyber-physical attack states.
 
-At the same time, the baseline comparison shows that the 1D-CNN achieves stronger raw in-distribution classification performance, with a mean macro F1 score of 0.9971. This is an important result and should be interpreted carefully. It means TRUST-Swarm should not be presented as a claim that the Graph-Temporal Transformer is the best standalone classifier. A journal-level interpretation should avoid that overclaim. The stronger and more accurate conclusion is that TRUST-Swarm contributes an integrated high-confidence mission-assurance framework. In this framework, raw classification is only one component; calibration, OOD vulnerability exposure, explainability, ablation evidence, runtime feasibility, and recovery reasoning are also part of the contribution.
+At the same time, the baseline comparison shows that the 1D-CNN achieves stronger raw in-distribution classification performance, with a mean macro F1 score of 0.9971. This is an important result and should be interpreted carefully. It means TRUST-Swarm should not be presented as a claim that the Graph-Temporal Transformer is the strongest standalone classifier. A journal-level interpretation should avoid that overclaim. The stronger and more accurate conclusion is that TRUST-Swarm contributes an integrated high-confidence mission-assurance framework. In this framework, raw classification is only one component; calibration, OOD vulnerability exposure, explainability, ablation evidence, runtime feasibility, and recovery reasoning are also part of the contribution.
 
-This interpretation improves the scientific positioning of the paper. A classification-only paper would be weakened by a baseline that performs better. A high-confidence computing paper can still make a strong contribution if it shows that the proposed framework evaluates reliability, robustness, traceability, and response support beyond raw accuracy.
+This interpretation imshows the scientific positioning of the paper. A classification-only paper would be weakened by a baseline that performs better. A high-confidence computing paper can still make a strong contribution if it shows that the proposed framework evaluates reliability, robustness, traceability, and response support beyond raw accuracy.
 
 ### 5.2. Calibration and confidence reliability
 
@@ -408,7 +410,7 @@ The calibration evidence also helps distinguish TRUST-Swarm from ordinary classi
 
 ### 5.3. OOD cyber-physical stress-test behavior
 
-The OOD stress-test results reveal a key finding: in-distribution performance does not guarantee reliability under unseen cyber-physical shifts. Under intermittent tampering, macro F1 decreases to 0.5965. More severe unseen conditions such as stealth jamming, slow GPS drift, and delayed combined attacks show substantial degradation. This behavior demonstrates why OOD testing is necessary for high-confidence mission assurance.
+Fig. 2 summarizes the OOD stress-test trend. The OOD stress-test results reveal a key finding: in-distribution performance does not guarantee reliability under unseen cyber-physical shifts. Under intermittent tampering, macro F1 decreases to 0.5965. More severe unseen conditions such as stealth jamming, slow GPS drift, and delayed combined attacks show substantial degradation. This behavior demonstrates why OOD testing is necessary for high-confidence mission assurance.
 
 This result should not be hidden or softened. In a strong journal paper, the OOD degradation should be presented as evidence that the framework exposes mission-risk conditions that standard testing would miss. If the manuscript only reported in-distribution accuracy, it would give an incomplete and potentially misleading picture of mission reliability. OOD testing shows where the model’s learned decision boundary is vulnerable and where additional monitoring, retraining, adaptation, or recovery logic may be required.
 
@@ -428,7 +430,7 @@ The ablation study evaluates whether major framework components contribute to th
 
 The full Graph-Temporal Transformer reaches a macro F1 score of 0.8734 in the ablation setting. Removing UAV-node attention reduces macro F1 to 0.7903, and removing the temporal transformer reduces macro F1 to 0.8237. These results indicate that both node-level interaction modeling and temporal reasoning contribute to classification performance. Node attention appears especially important because UAV swarm mission degradation is distributed across multiple nodes rather than isolated to a single flat time-series signal.
 
-From the framework perspective, ablation also clarifies that classification is not the only value of TRUST-Swarm. Calibration, OOD analysis, explanation, and recovery reasoning do not necessarily improve raw accuracy directly, but they improve assurance evidence. This distinction is essential for the journal narrative. The paper should clearly separate classification performance from high-confidence mission-assurance value.
+From the framework perspective, ablation also clarifies that classification is not the only value of TRUST-Swarm. Calibration, OOD analysis, explanation, and recovery reasoning do not necessarily imshow raw accuracy directly, but they imshow assurance evidence. This distinction is essential for the journal narrative. The paper should clearly separate classification performance from high-confidence mission-assurance value.
 
 ### 5.6. Runtime and complexity analysis
 
@@ -438,7 +440,7 @@ These results support the practical computing feasibility of the framework. A hi
 
 ### 5.7. Recovery-oriented reasoning
 
-The recovery-reasoning layer demonstrates how prediction, confidence, entropy, and mission-risk indicators can be mapped to response-oriented actions. The action space includes continue, monitor, reroute, reassign, isolate node, and return to base. This module should not be described as an operationally validated UAV controller. Instead, it should be described as a recovery-reasoning scaffold that shows how high-confidence prediction outputs can support mission-response planning.
+The recovery-reasoning layer demonstrates how prediction, confidence, entropy, and mission-risk indicators can be mapped to response-oriented actions. The action space includes continue, monitor, reroute, reassign, isolate node, and return to base. This module should not be described as an validated in field settings UAV controller. Instead, it should be described as a recovery-reasoning scaffold that shows how high-confidence prediction outputs can support mission-response planning.
 
 This distinction is important. A detection system that stops at classification does not complete the mission-assurance loop. TRUST-Swarm connects recognition evidence to possible response actions. When confidence is high and the predicted state is normal, continue may be appropriate. When uncertainty is high, monitor or escalate may be appropriate. When spoofing indicators are strong, rerouting may be considered. When node-level evidence suggests local compromise, isolate-node reasoning may be relevant. When combined attacks and uncertainty are high, return-to-base reasoning may be safer.
 
@@ -512,10 +514,120 @@ Finally, runtime profiling was conducted in a GPU-based environment and supports
 
 This paper presented TRUST-Swarm, a high-confidence graph-temporal intelligent computing framework for secure multi-UAV mission assurance under cyber-physical attacks. The framework models distributed UAV telemetry as graph-temporal mission windows and integrates mission-state recognition, confidence calibration, OOD cyber-physical stress testing, perturbation-based explainability, ablation analysis, runtime profiling, and recovery-oriented reasoning.
 
-The experimental results show that the Graph-Temporal Transformer achieves strong mission-state recognition and reliable in-distribution calibration. Across the three-seed evaluation, the model achieves strong accuracy and macro-F1 performance while producing low Expected Calibration Error and Brier score. At the same time, the baseline comparison shows that the 1D-CNN achieves stronger raw in-distribution classification performance. This result clarifies the correct contribution of the paper: TRUST-Swarm is not positioned as the best standalone classifier. It is positioned as a high-confidence secure intelligent computing framework that evaluates the reliability, robustness, traceability, and response usefulness of mission-state prediction.
+The experimental results show that the Graph-Temporal Transformer achieves strong mission-state recognition and reliable in-distribution calibration. Across the three-seed evaluation, the model achieves strong accuracy and macro-F1 performance while producing low Expected Calibration Error and Brier score. At the same time, the baseline comparison shows that the 1D-CNN achieves stronger raw in-distribution classification performance. This result clarifies the correct contribution of the paper: TRUST-Swarm is not positioned as the strongest standalone classifier. It is positioned as a high-confidence secure intelligent computing framework that evaluates the reliability, robustness, traceability, and response usefulness of mission-state prediction.
 
 The OOD stress-test results show that unseen cyber-physical shifts can substantially degrade performance. This finding is central to the high-confidence computing narrative. A trustworthy mission-assurance framework should not hide failure conditions; it should expose them and provide evidence for monitoring, escalation, and recovery-oriented reasoning. The explainability results further strengthen the framework by identifying latency, zone coverage, route deviation, mission progress, and GPS jump as mission-relevant decision drivers. These features connect model behavior to operationally meaningful UAV mission risks.
 
 Overall, the study demonstrates that secure UAV swarm mission assurance requires more than high classification accuracy. It requires integrated evidence about prediction reliability, uncertainty, unseen-shift vulnerability, decision traceability, computational feasibility, and response support. TRUST-Swarm contributes this integrated framework and provides a foundation for future research in high-confidence, secure, and intelligent UAV swarm computing.
+
+### References
+
+[1] O. Ceviz, S. Sen, and P. Sadioglu, “A Survey of Security in UAVs and FANETs: Issues, Threats, Analysis of Attacks, and Solutions,” arXiv:2306.14281, 2023.
+
+[2] M. A. Lopez, M. Baddeley, W. T. Lunardi, A. Pandey, and J.-P. Giacalone, “Towards Secure Wireless Mesh Networks for UAV Swarm Connectivity: Current Threats, Research, and Opportunities,” arXiv:2108.13154, 2021.
+
+[3] B. Li, Z. Fei, and Y. Zhang, “UAV Communications for 5G and Beyond: Recent Advances and Future Trends,” arXiv:1901.06637, 2019.
+
+[4] Y. Zeng, Q. Wu, and R. Zhang, “Accessing From The Sky: A Tutorial on UAV Communications for 5G and Beyond,” arXiv:1903.05289, 2019.
+
+[5] P. Mykytyn, M. Brzozowski, Z. Dyka, and P. Langendoerfer, “GPS-Spoofing Attack Detection Mechanism for UAV Swarms,” arXiv:2301.12766, 2023.
+
+[6] F. B. Sorbelli, M. Conti, C. M. Pinotti, and G. Rigoni, “UAVs Path Deviation Attacks: Survey and Research Challenges,” arXiv:2102.06638, 2021.
+
+[7] A. Khazraei, H. Meng, and M. Pajic, “Black-box Stealthy GPS Attacks on Unmanned Aerial Vehicles,” arXiv:2409.11405, 2024.
+
+[8] T.-C. Vuong, C. C. Nguyen, V.-C. Pham, T.-T.-H. Le, X.-N. Tran, and T. V. Luong, “Effective Intrusion Detection for UAV Communications using Autoencoder-based Feature Extraction and Machine Learning Approach,” arXiv:2410.02827, 2024.
+
+[9] J. Yang, M. Cui, H. Zhang, F. Ji, Z. Lai, and Y. Wang, “Agent-Based Anti-Jamming Techniques for UAV Communications in Adversarial Environments: A Comprehensive Survey,” arXiv:2508.11687, 2025.
+
+[10] M. A. Husnoo, A. Anwar, N. Hosseinzadeh, S. N. Islam, A. N. Mahmood, and R. Doss, “False Data Injection Threats in Active Distribution Systems: A Comprehensive Survey,” arXiv:2111.14251, 2021.
+
+[11] C. Guo, G. Pleiss, Y. Sun, and K. Q. Weinberger, “On Calibration of Modern Neural Networks,” in Proceedings of the 34th International Conference on Machine Learning, 2017.
+
+[12] Y. Gal and Z. Ghahramani, “Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning,” in Proceedings of the 33rd International Conference on Machine Learning, 2016.
+
+[13] Y. Ovadia, E. Fertig, J. Ren, Z. Nado, D. Sculley, S. Nowozin, J. Dillon, B. Lakshminarayanan, and J. Snoek, “Can You Trust Your Model’s Uncertainty? Evaluating Predictive Uncertainty Under Dataset Shift,” in Advances in Neural Information Processing Systems, 2019.
+
+[14] D. Hendrycks and K. Gimpel, “A Baseline for Detecting Misclassified and Out-of-Distribution Examples in Neural Networks,” in International Conference on Learning Representations, 2017.
+
+[15] M. T. Ribeiro, S. Singh, and C. Guestrin, “Why Should I Trust You? Explaining the Predictions of Any Classifier,” in Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 2016.
+
+[16] S. M. Lundberg and S.-I. Lee, “A Unified Approach to Interpreting Model Predictions,” in Advances in Neural Information Processing Systems, 2017.
+
+[17] R. S. Sutton and A. G. Barto, Reinforcement Learning: An Introduction, 2nd ed., MIT Press, 2018.
+
+[18] J. Schulman, F. Wolski, P. Dhariwal, A. Radford, and O. Klimov, “Proximal Policy Optimization Algorithms,” arXiv:1707.06347, 2017.
+
+[19] C. Fleming, C. Elks, G. Bakirtzis, S. C. Adams, B. Carter, P. A. Beling, and B. Horowitz, “Cyberphysical Security Through Resiliency: A Systems-Centric Approach,” arXiv:2011.14469, 2020.
+
+[20] M. Segovia-Ferreira, J. Rubio-Hernan, A. R. Cavalli, and J. Garcia-Alfaro, “A Survey on Cyber-Resilience Approaches for Cyber-Physical Systems,” arXiv:2302.05402, 2023.
+
+[21] Y. Yan, Q. Yuan, W. Yu, X. Wang, Q. Meng, K. Chen, X. Li, W. Yin, and Y. Wang, “Rethinking the power of multi-domain features for SDN-IoT network traffic prediction: An intra- and inter-period perspective,” High-Confidence Computing, vol. 6, 2026, Article 100352. doi: 10.1016/j.hcc.2025.100352.
+
+[22] A. Zineddine, Y. Belfaik, Y. Sadqi, and S. Safi, “A novel hybrid cybersecurity assessment methodology for HTTPS deployment,” High-Confidence Computing, vol. 6, 2026, Article 100344. doi: 10.1016/j.hcc.2025.100344.
+
+[23] H. B. Ahmad, H. Gao, and N. Latif, “Adaptive anomaly detection and classification in critical infrastructure systems: A real-time privacy-preserving multi-model framework,” High-Confidence Computing, vol. 6, 2026, Article 100360. doi: 10.1016/j.hcc.2025.100360.
+
+[24] A. Barredo Arrieta et al., “Explainable Artificial Intelligence (XAI): Concepts, Taxonomies, Opportunities and Challenges toward Responsible AI,” Information Fusion, 2020.
+
+[25] A. Adadi and M. Berrada, “Peeking Inside the Black-Box: A Survey on Explainable Artificial Intelligence (XAI),” IEEE Access, 2018.
+
+[26] S. Gu, L. Yang, Y. Du, G. Chen, F. Walter, J. Wang, and A. Knoll, “A Review of Safe Reinforcement Learning: Methods, Theory and Applications,” arXiv:2205.10330, 2022.
+
+[27] A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A. N. Gomez, L. Kaiser, and I. Polosukhin, “Attention Is All You Need,” in Advances in Neural Information Processing Systems, vol. 30, 2017.
+
+[28] T. N. Kipf and M. Welling, “Semi-Supervised Classification with Graph Convolutional Networks,” in International Conference on Learning Representations, 2017.
+
+[29] P. Veličković, G. Cucurull, A. Casanova, A. Romero, P. Liò, and Y. Bengio, “Graph Attention Networks,” in International Conference on Learning Representations, 2018.
+
+[30] E. Rossi, B. Chamberlain, F. Frasca, D. Eynard, F. Monti, and M. Bronstein, “Temporal Graph Networks for Deep Learning on Dynamic Graphs,” arXiv:2006.10637, 2020.
+
+[31] A. Longa, V. Lachi, G. Santin, M. Bianchini, B. Lepri, P. Liò, F. Scarselli, and A. Passerini, “Graph Neural Networks for Temporal Graphs: State of the Art, Open Challenges, and Opportunities,” arXiv:2302.01018, 2023.
+
+[32] I. Sharifi et al., “A Survey of Security Challenges and Solutions for UAS Traffic Management (UTM) and small Unmanned Aerial Systems (sUAS),” arXiv:2601.08229, 2026.
+
+[33] D. Bahdanau, K. Cho, and Y. Bengio, “Neural Machine Translation by Jointly Learning to Align and Translate,” in International Conference on Learning Representations, 2015.
+
+[34] W. L. Hamilton, R. Ying, and J. Leskovec, “Inductive Representation Learning on Large Graphs,” in Advances in Neural Information Processing Systems, 2017.
+
+[35] L. Zhao, Y. Song, C. Zhang, Y. Liu, P. Wang, T. Lin, M. Deng, and H. Li, “T-GCN: A Temporal Graph Convolutional Network for Traffic Prediction,” arXiv:1811.05320, 2018.
+
+[36] S. Hochreiter and J. Schmidhuber, “Long Short-Term Memory,” Neural Computation, vol. 9, no. 8, pp. 1735–1780, 1997.
+
+[37] K. Cho, B. van Merriënboer, C. Gulcehre, D. Bahdanau, F. Bougares, H. Schwenk, and Y. Bengio, “Learning Phrase Representations Using RNN Encoder-Decoder for Statistical Machine Translation,” in Proceedings of EMNLP, 2014.
+
+[38] J. Chung, C. Gulcehre, K. Cho, and Y. Bengio, “Empirical Evaluation of Gated Recurrent Neural Networks on Sequence Modeling,” arXiv:1412.3555, 2014.
+
+[39] S. Bai, J. Z. Kolter, and V. Koltun, “An Empirical Evaluation of Generic Convolutional and Recurrent Networks for Sequence Modeling,” arXiv:1803.01271, 2018.
+
+[40] M. P. Naeini, G. F. Cooper, and M. Hauskrecht, “Obtaining Well Calibrated Probabilities Using Bayesian Binning,” in Proceedings of the AAAI Conference on Artificial Intelligence, 2015.
+
+[41] G. W. Brier, “Verification of forecasts expressed in terms of probability,” Monthly Weather Review, vol. 78, no. 1, pp. 1–3, 1950.
+
+[42] J. Nixon, M. W. Dusenberry, L. Zhang, G. Jerfel, and D. Tran, “Measuring Calibration in Deep Learning,” CVPR Workshops, 2019.
+
+[43] B. Lakshminarayanan, A. Pritzel, and C. Blundell, “Simple and Scalable Predictive Uncertainty Estimation Using Deep Ensembles,” in Advances in Neural Information Processing Systems, 2017.
+
+[44] K. Lee, H. Lee, K. Lee, and J. Shin, “Training Confidence-Calibrated Classifiers for Detecting Out-of-Distribution Samples,” in International Conference on Learning Representations, 2018.
+
+[45] S. Sagawa, P. W. Koh, T. B. Hashimoto, and P. Liang, “Distributionally Robust Neural Networks for Group Shifts: On the Importance of Regularization for Worst-Case Generalization,” in International Conference on Learning Representations, 2020.
+
+[46] S. Neupane, J. Ables, W. Anderson, S. Mittal, S. Rahimi, I. Banicescu, and M. Seale, “Explainable Intrusion Detection Systems (X-IDS): A Survey of Current Methods, Challenges, and Opportunities,” arXiv:2207.06236, 2022.
+
+[47] V. Mnih et al., “Human-Level Control Through Deep Reinforcement Learning,” Nature, vol. 518, pp. 529–533, 2015.
+
+[48] J. Schulman, S. Levine, P. Moritz, M. I. Jordan, and P. Abbeel, “Trust Region Policy Optimization,” in Proceedings of the 32nd International Conference on Machine Learning, 2015.
+
+[49] J. García and F. Fernández, “Safe Exploration of State and Action Spaces in Reinforcement Learning,” arXiv:1402.0560, 2014.
+
+[50] S. Junges, N. Jansen, C. Dehnert, U. Topcu, and J.-P. Katoen, “Safety-Constrained Reinforcement Learning for MDPs,” arXiv:1510.05880, 2015.
+
+[51] J. García and F. Fernández, “A Comprehensive Survey on Safe Reinforcement Learning,” Journal of Machine Learning Research, 2015.
+
+[52] P. Hernandez-Leal, B. Kartal, and M. E. Taylor, “A Survey and Critique of Multiagent Deep Reinforcement Learning,” arXiv:1810.05587, 2018.
+
+[53] K. Zhang, Z. Yang, and T. Başar, “Multi-Agent Reinforcement Learning: A Selective Overview of Theories and Algorithms,” arXiv:1911.10635, 2019.
+
+[54] S. Bagchi et al., “Grand Challenges in Resilience: Autonomous System Resilience Through Design and Runtime Measures,” arXiv:1912.11598, 2019.
 
 

@@ -1,6 +1,6 @@
 # High-Confidence Computing Target: Title, Abstract, and Contributions v2
 
-## HCC-Framed Abstract
+## Abstract
 
 Multi-UAV swarm systems are increasingly deployed in surveillance, reconnaissance, infrastructure inspection, disaster response, logistics, and other cyber-physical missions where autonomous decisions must remain reliable under communication, navigation, telemetry, and environmental uncertainty. In adversarial mission settings, however, communication jamming, GPS spoofing, telemetry tampering, and combined cyber-physical attacks can corrupt the information streams required for swarm coordination and mission-state assessment. Existing UAV security and resilience studies have made important progress in attack detection, secure communication, anomaly recognition, and rule-based response. Nevertheless, many approaches remain focused on classification accuracy or isolated security functions, while providing limited support for calibrated confidence estimation, out-of-distribution (OOD) stress testing, traceable decision evidence, and recovery-oriented mission reasoning. This gap is critical for high-confidence computing because security-critical autonomous systems must evaluate not only what state is predicted, but also whether the prediction is reliable, how it behaves under unseen shifts, why the decision was produced, and how the output can support response planning.
 
@@ -10,7 +10,7 @@ To address this need, this paper presents TRUST-Swarm, a high-confidence graph-t
 
 High-confidence computing; Multi-UAV swarm; Cyber-physical security; Mission assurance; Graph-temporal learning; Uncertainty calibration; Out-of-distribution evaluation; Explainable AI; Recovery reasoning
 
-## HCC Contribution Table
+## Contributions
 
 | High-Confidence Computing Requirement | TRUST-Swarm Component | Manuscript Evidence |
 | ------------------------------------- | -------------------- | ------------------- |

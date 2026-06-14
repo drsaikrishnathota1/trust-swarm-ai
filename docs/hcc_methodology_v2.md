@@ -6,7 +6,7 @@ This section presents the methodology of TRUST-Swarm, a high-confidence graph-te
 
 ### 3.1. Framework overview
 
-TRUST-Swarm consists of six integrated layers. The first layer generates multi-UAV mission telemetry under normal and adversarial cyber-physical conditions. The second layer converts raw telemetry into graph-temporal mission windows that preserve UAV-node structure, mission-time evolution, and heterogeneous telemetry features. The third layer performs mission-state prediction using a Graph-Temporal Transformer. The fourth layer evaluates prediction reliability using confidence and calibration metrics. The fifth layer evaluates OOD behavior under unseen cyber-physical stress conditions. The sixth layer provides traceable explanation and recovery-oriented reasoning.
+Fig. 1 illustrates the TRUST-Swarm framework architecture. TRUST-Swarm consists of six integrated layers. The first layer generates multi-UAV mission telemetry under normal and adversarial cyber-physical conditions. The second layer converts raw telemetry into graph-temporal mission windows that preserve UAV-node structure, mission-time evolution, and heterogeneous telemetry features. The third layer performs mission-state prediction using a Graph-Temporal Transformer. The fourth layer evaluates prediction reliability using confidence and calibration metrics. The fifth layer evaluates OOD behavior under unseen cyber-physical stress conditions. The sixth layer provides traceable explanation and recovery-oriented reasoning.
 
 The framework can be summarized as follows:
 

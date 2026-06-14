@@ -12,6 +12,7 @@ parts = [
     ROOT / "docs" / "hcc_experimental_setup_v2.md",
     ROOT / "docs" / "hcc_results_discussion_v2.md",
     ROOT / "docs" / "hcc_limitations_conclusion_v2.md",
+    ROOT / "docs" / "hcc_references_v1.md",
 ]
 
 missing = [str(p) for p in parts if not p.exists()]
@@ -43,6 +44,7 @@ for path in parts:
     text = text.replace("# High-Confidence Computing Results and Discussion v1", "")
     text = text.replace("# High-Confidence Computing Results and Discussion v2", "")
     text = text.replace("# High-Confidence Computing Limitations and Conclusion v2", "")
+    text = text.replace("# High-Confidence Computing References v1", "")
 
     # Remove planning-only subsections from title/abstract document.
     cut_markers = [
