@@ -60,7 +60,7 @@ This improves decision traceability. In high-confidence computing, a framework s
 
 TRUST-Swarm includes a PPO-based recovery-reasoning scaffold. The recovery layer receives mission-state prediction, confidence, entropy, and mission-risk indicators. It maps these inputs to recovery actions such as continue, monitor, reroute, reassign, isolate node, and return to base.
 
-This module is not claimed as a deployment-ready UAV controller. Instead, it demonstrates how high-confidence prediction outputs can support mission-response reasoning. This is important because secure mission assurance should not stop at detection. It should connect risk recognition to response planning.
+This module is not claimed as a operationally deployable UAV controller. Instead, it demonstrates how high-confidence prediction outputs can support mission-response reasoning. This is important because secure mission assurance should not stop at detection. It should connect risk recognition to response planning.
 
 ## 5.7 Discussion Against High-Confidence Computing Standards
 
@@ -83,7 +83,7 @@ The manuscript should not claim:
 
 * the Graph-Temporal Transformer is superior to all baselines;
 * OOD behavior is fully solved;
-* the recovery module is operationally deployment-ready;
+* the recovery module is operationally operationally deployable;
 * synthetic telemetry replaces field UAV validation.
 
 The results support TRUST-Swarm as a secure, intelligent, calibrated, traceable, and recovery-aware mission-assurance framework.

@@ -40,7 +40,7 @@ Do not claim:
 
 * Graph-Temporal Transformer is the best classifier.
 * TRUST-Swarm solves all OOD attack detection.
-* PPO recovery is deployment-ready.
+* PPO recovery is operationally deployable.
 * Synthetic telemetry fully replaces real UAV field data.
 * The framework is operationally validated on real UAV hardware.
 

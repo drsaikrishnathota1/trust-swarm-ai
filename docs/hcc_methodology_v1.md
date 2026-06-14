@@ -135,7 +135,7 @@ For each condition, the framework reports:
 4. entropy
 5. low-confidence rate
 
-This stage is designed to expose mission-risk conditions where predictions degrade or confidence becomes unreliable. The goal is not to claim perfect OOD detection, but to evaluate vulnerability under unseen cyber-physical conditions.
+This stage is designed to expose mission-risk conditions where predictions degrade or confidence becomes unreliable. The goal is not to claim complete OOD reliability, but to evaluate vulnerability under unseen cyber-physical conditions.
 
 ## 3.8 Traceable Explanation Layer
 
@@ -170,7 +170,7 @@ The action space includes:
 5. isolate node
 6. return to base
 
-This module is not claimed as a deployment-ready UAV controller. It is included to demonstrate how high-confidence prediction outputs can support recovery-oriented mission reasoning.
+This module is not claimed as a operationally deployable UAV controller. It is included to demonstrate how high-confidence prediction outputs can support recovery-oriented mission reasoning.
 
 ## 3.10 Experimental Protocol
 

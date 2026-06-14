@@ -71,7 +71,7 @@ This study has several limitations. First, the current evaluation uses controlle
 
 Second, the OOD stress tests reveal that severe unseen cyber-physical shifts can substantially reduce mission-state recognition performance. This finding is important for high-confidence computing because it exposes hidden mission risk, but it also shows that additional OOD detection and uncertainty-monitoring mechanisms are needed.
 
-Third, the PPO-based recovery component is evaluated as a recovery-reasoning scaffold rather than a deployment-ready UAV controller. Future work should connect the recovery layer to high-fidelity UAV swarm simulators, hardware-in-the-loop validation, and mission-level safety constraints.
+Third, the PPO-based recovery component is evaluated as a recovery-reasoning scaffold rather than a operationally deployable UAV controller. Future work should connect the recovery layer to high-fidelity UAV swarm simulators, hardware-in-the-loop validation, and mission-level safety constraints.
 
 Fourth, the current framework uses a fixed set of telemetry features and attack classes. Future research should include richer sensor streams, adversarial attack adaptation, communication-topology changes, multi-agent coordination constraints, and real UAV logs.
 
