@@ -61,7 +61,17 @@ def word_count(s: str) -> int:
 def git_status():
     try:
         out = subprocess.check_output(["git", "status", "--short"], text=True)
-        return out.strip()
+        lines = []
+        ignore = {
+            "docs/hcc_final_full_manuscript_audit_v1.md",
+            "docs/hcc_section_word_counts_v1.csv",
+        }
+        for line in out.splitlines():
+            path = line[3:].strip() if len(line) > 3 else line.strip()
+            if path in ignore:
+                continue
+            lines.append(line)
+        return "\n".join(lines).strip()
     except Exception as e:
         return f"Could not run git status: {e}"
 
