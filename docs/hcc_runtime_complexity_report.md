@@ -4,30 +4,31 @@ This report summarizes runtime and complexity profiling for TRUST-Swarm models.
 
 ## Environment
 
-- Python: 3.14.4
-- Platform: macOS-26.5.1-arm64-arm-64bit-Mach-O
-- PyTorch: 2.12.0
-- Device: mps
-- CUDA available: False
+- Python: 3.11.10
+- Platform: Linux-6.8.0-53-generic-x86_64-with-glibc2.35
+- PyTorch: 2.11.0+cu128
+- Device: cuda
+- CUDA available: True
+- GPU: NVIDIA H200
 
 ## Profiling Configuration
 
-- Batch size: 32
+- Batch size: 128
 - Window size: 20
 - UAV nodes: 20
 - Telemetry features: 9
 - Classes: 8
-- Warmup iterations: 3
-- Timed inference iterations: 5
+- Warmup iterations: 10
+- Timed inference iterations: 50
 
 ## Runtime and Complexity Table
 
 | Model | Params | Size MB | Batch latency ms | Sample latency ms | Throughput windows/s | Train step ms | Device |
 |---|---:|---:|---:|---:|---:|---:|---|
-| LSTM | 308616 | 1.182 | 0.578 | 0.018059 | 55375.297 | 3.904 | mps |
-| GRU | 235912 | 0.905 | 2.565 | 0.080146 | 12477.214 | 11.548 | mps |
-| CNN1D | 136840 | 0.531 | 0.269 | 0.008418 | 118797.208 | 2.691 | mps |
-| GraphTemporalTransformer | 680840 | 2.617 | 1.515 | 0.047355 | 21117.002 | 19.14 | mps |
+| LSTM | 308616 | 1.181 | 0.214 | 0.001669 | 599006.617 | 1.674 | cuda |
+| GRU | 235912 | 0.904 | 0.177 | 0.001381 | 724111.11 | 1.48 | cuda |
+| CNN1D | 136840 | 0.531 | 0.211 | 0.001647 | 606987.446 | 1.465 | cuda |
+| GraphTemporalTransformer | 680840 | 2.618 | 2.267 | 0.017712 | 56458.364 | 9.938 | cuda |
 
 ## Manuscript Use
 
