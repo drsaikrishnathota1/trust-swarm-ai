@@ -96,10 +96,7 @@ content.append("\n---\n")
 content.append(read("docs/final_figure_captions.md"))
 content.append("\n---\n")
 
-content.append(read("docs/combined_reference_list.md"))
-content.append("\n---\n")
-
-content.append(read("docs/information_fusion_candidate_references.md"))
+content.append(read("docs/cleaned_candidate_reference_list_v2.md"))
 
 out.write_text("\n".join(content))
 print(f"Saved: {out}")
