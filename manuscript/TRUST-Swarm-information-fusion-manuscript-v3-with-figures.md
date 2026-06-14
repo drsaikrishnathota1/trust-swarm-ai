@@ -80,15 +80,15 @@ The remainder of this paper is organized as follows. Section 2 reviews related w
 
 ---
 
-# Information Fusion Related Work v2
+# Information Fusion Related Work v3
 
 ## 2. Related Work
 
-This section reviews prior work related to UAV swarm mission assurance, cyber-physical UAV attacks, graph-temporal learning, multi-source information fusion, uncertainty calibration, OOD evaluation, explainability, and recovery-oriented reinforcement learning.
+This section reviews prior work related to UAV swarm mission assurance, cyber-physical UAV attacks, multi-source information fusion, graph-temporal learning, uncertainty calibration, OOD evaluation, explainability, and recovery-oriented reinforcement learning.
 
 ## 2.1 UAV Swarm Mission Assurance
 
-UAV swarms provide distributed sensing, wide-area coverage, redundancy, and cooperative mission execution. These properties make them attractive for surveillance, reconnaissance, disaster response, infrastructure monitoring, and defense-oriented missions. However, swarm autonomy also creates mission-assurance challenges because the mission state depends on multiple UAV nodes, communication links, navigation signals, energy constraints, coverage progress, and operator objectives.
+UAV swarms provide distributed sensing, wide-area coverage, redundancy, and cooperative mission execution. These properties make them attractive for surveillance, reconnaissance, disaster response, infrastructure monitoring, border security, and defense-oriented missions. However, swarm autonomy also creates mission-assurance challenges because mission state depends on multiple UAV nodes, communication links, navigation signals, energy constraints, coverage progress, and operator objectives.
 
 Prior UAV security and mission-assurance studies have examined UAS risks, sensor-channel threats, UAV-enabled systems, and cyber-physical vulnerabilities [1, 2, 34–37]. These works motivate the need for resilient monitoring and assurance mechanisms. However, many existing approaches focus on individual attack detection or secure communication rather than integrated mission-state fusion across heterogeneous telemetry sources.
 
@@ -100,49 +100,55 @@ Prior work has studied GPS spoofing detection, cooperative swarm spoofing mitiga
 
 ## 2.3 Multi-Source Information Fusion for Mission Awareness
 
-Information fusion is central to autonomous mission awareness because a single sensor or telemetry source rarely provides sufficient evidence for reliable mission-state estimation. In UAV swarms, mission state must be inferred by combining communication telemetry, navigation behavior, energy state, coverage status, and mission-progress indicators.
+Information fusion provides the foundation for combining heterogeneous data sources into decision-relevant representations. Classical multisensor fusion work has shown that combining multiple information sources can improve situational awareness, reliability, and decision support compared with isolated sensor interpretation [IF1–IF5]. High-level fusion models further emphasize the transformation of low-level measurements into mission-level awareness and decision-oriented reasoning [IF6–IF8, IF15].
 
-Traditional fusion approaches often focus on combining sensor measurements or improving state estimation. In contrast, TRUST-Swarm focuses on cyber-physical mission-assurance fusion, where telemetry streams may be adversarially corrupted or distribution-shifted. The framework operationalizes multi-source fusion by representing UAV telemetry as graph-temporal fusion windows and evaluating fused predictions using classification, calibration, OOD stress testing, explainability, and recovery reasoning.
+In UAV swarm mission assurance, no single telemetry source is sufficient to determine mission reliability. Communication delay, packet loss, route deviation, GPS jumps, energy consumption, mission progress, and coverage loss must be interpreted jointly across UAV nodes and mission time. TRUST-Swarm operationalizes this idea by converting distributed UAV telemetry into graph-temporal fusion windows.
 
-## 2.4 Graph-Temporal Learning for UAV Swarms
+## 2.4 Uncertainty-Aware and Conflict-Aware Fusion
 
-UAV swarms naturally form dynamic graph systems. UAVs can be represented as nodes, while communication, proximity, coordination, or shared mission context can define relationships. Graph neural networks, graph attention models, and graph-temporal approaches are therefore well suited for learning relational dependencies in multi-agent systems [5–10].
+Cyber-physical mission telemetry may be noisy, incomplete, delayed, or adversarially corrupted. Therefore, trustworthy fusion requires not only combining data streams but also evaluating uncertainty and conflict among information sources. Evidence-theoretic and uncertainty-aware fusion methods provide a foundation for reasoning under uncertain or conflicting evidence [IF9–IF12].
+
+TRUST-Swarm extends this idea into a deep graph-temporal setting by evaluating confidence, predictive entropy, Expected Calibration Error, and Brier score. This allows the framework to assess whether a fused mission-state prediction is reliable under in-distribution conditions and vulnerable under shifted conditions [18–24].
+
+## 2.5 Multi-Source and Multi-Temporal Fusion
+
+Multi-source and multi-temporal fusion is widely studied in domains where observations evolve over time and originate from heterogeneous sources [IF13, IF14]. UAV swarm mission assurance has a similar structure because each UAV contributes telemetry over time, and mission-level state emerges from the combined behavior of many nodes and features.
+
+TRUST-Swarm represents this setting as a graph-temporal fusion tensor, preserving temporal structure, UAV-node structure, and feature-source structure. This enables the model to jointly reason over communication, navigation, energy, mission-progress, and coverage signals.
+
+## 2.6 Graph-Temporal Learning for UAV Swarms
+
+UAV swarms naturally form dynamic graph systems. UAVs can be represented as nodes, while communication, proximity, coordination, or shared mission context can define relationships. Graph neural networks, graph attention models, and graph-temporal approaches are therefore suitable for learning relational dependencies in multi-agent systems [5–10].
 
 Transformers and temporal models provide additional support for capturing long-range mission evolution and temporal dependencies [11–13]. TRUST-Swarm combines these ideas by using a Graph-Temporal Transformer to learn both UAV-node relationships and mission-time evolution from graph-temporal fusion windows.
 
-## 2.5 Temporal Deep Learning Baselines
+## 2.7 Temporal Deep Learning Baselines
 
 Temporal deep learning models such as LSTM, GRU, and 1D-CNN are common baselines for sequence classification and telemetry analysis [14–17]. LSTM and GRU models capture recurrent temporal dependencies, while 1D-CNN models capture local temporal signatures efficiently.
 
-In TRUST-Swarm, these models are used to evaluate whether conventional temporal models can classify mission-state patterns from the same telemetry windows. The strong 1D-CNN result shows that local temporal signatures are highly informative in the current synthetic telemetry setting. This supports the need for careful claim positioning: TRUST-Swarm should be presented as a trustworthy information-fusion framework, not merely as the highest-accuracy classifier.
+In TRUST-Swarm, these models are used to evaluate whether conventional temporal models can classify mission-state patterns from the same telemetry windows. The strong 1D-CNN result shows that local temporal signatures are highly informative in the current synthetic telemetry setting. This supports careful claim positioning: TRUST-Swarm should be presented as a trustworthy information-fusion framework, not merely as the highest-accuracy classifier.
 
-## 2.6 Uncertainty Calibration for High-Confidence Fusion
-
-High-confidence mission assurance requires calibrated confidence estimates. A UAV swarm model may produce a correct or incorrect mission-state prediction, but the mission-assurance layer also needs to know whether that prediction is reliable. Prior work on neural-network calibration, MC dropout, deep ensembles, and uncertainty under dataset shift provides the foundation for confidence-aware learning [18–24].
-
-TRUST-Swarm evaluates calibration using Expected Calibration Error, Brier score, predictive confidence, and predictive entropy. This supports confidence-aware fusion because the framework evaluates not only what mission state is predicted, but also how trustworthy the fused prediction is under in-distribution conditions.
-
-## 2.7 OOD Evaluation and Distribution Shift
+## 2.8 OOD Evaluation and Distribution Shift
 
 Autonomous UAV missions may encounter unseen cyber-physical conditions that differ from training data. Attackers may use stealth jamming, slow GPS drift, intermittent tampering, delayed combined attacks, or noise patterns that were not observed during model training. Prior OOD and distribution-shift studies show that models can fail under shifted inputs even when they perform well in-distribution [22, 25–28, 54, 55].
 
 TRUST-Swarm includes OOD-aware fusion stress testing to evaluate how fused mission-state predictions behave under unseen cyber-physical shifts. This is important because high in-distribution accuracy does not guarantee reliable mission assurance under adversarial or unfamiliar operating conditions.
 
-## 2.8 Explainability for Fusion-Driver Analysis
+## 2.9 Explainability for Fusion-Driver Analysis
 
-Explainability is important for mission assurance because operators and downstream recovery modules need to understand which telemetry sources influenced a prediction. Prior explainable AI methods such as LIME, SHAP, saliency evaluation, and XAI frameworks support interpretation of model decisions [29–32].
+Explainability is important for mission assurance because operators and downstream recovery modules need to understand which telemetry sources influenced a prediction. Prior explainable AI methods such as LIME, SHAP, saliency evaluation, and XAI frameworks support interpretation of model decisions [29–32]. Context-enhanced information fusion also emphasizes linking fused decisions to mission-relevant domain knowledge [IF15].
 
-TRUST-Swarm uses perturbation-based feature importance to identify fusion drivers. The analysis reveals whether the model relies on operationally meaningful telemetry sources such as latency, zone coverage, route deviation, mission progress, and GPS jump. This improves trust because the fused prediction can be linked back to mission-relevant evidence.
+TRUST-Swarm uses perturbation-based feature importance to identify fusion drivers. The analysis reveals whether the model relies on operationally meaningful telemetry sources such as latency, zone coverage, route deviation, mission progress, and GPS jump.
 
-## 2.9 Recovery-Oriented Reinforcement Learning
+## 2.10 Recovery-Oriented Reinforcement Learning
 
 Mission assurance should not stop at mission-state prediction. When a risk is detected, a UAV swarm may need to continue, monitor, reroute, reassign, isolate a node, or return to base. Reinforcement learning, PPO, and multi-agent reinforcement learning provide foundations for adaptive mission planning and recovery-oriented reasoning [33, 48–53].
 
 TRUST-Swarm includes a PPO-based recovery scaffold to demonstrate how fused mission-state predictions and confidence signals can support downstream mission-assurance decisions. The current recovery component is not a deployment-ready controller, but it provides an initial bridge between trustworthy information fusion and recovery reasoning.
 
-## 2.10 Research Gap
+## 2.11 Research Gap
 
-The literature includes strong work on UAV security, cyber-physical attacks, graph learning, temporal modeling, uncertainty estimation, OOD detection, explainability, and reinforcement learning. However, these areas are often studied separately. Existing UAV security systems may detect attacks, but they often do not integrate multi-source telemetry fusion, graph-temporal mission modeling, calibrated confidence, OOD stress testing, fusion-driver explainability, and recovery reasoning in one pipeline.
+The literature includes strong work on UAV security, cyber-physical attacks, information fusion, graph learning, temporal modeling, uncertainty estimation, OOD detection, explainability, and reinforcement learning. However, these areas are often studied separately. Existing UAV security systems may detect attacks, but they often do not integrate multi-source telemetry fusion, graph-temporal mission modeling, calibrated confidence, OOD stress testing, fusion-driver explainability, and recovery reasoning in one pipeline.
 
 TRUST-Swarm addresses this gap by presenting a trustworthy graph-temporal multi-source information fusion framework for UAV swarm mission assurance. The framework evaluates not only mission-state classification, but also confidence reliability, unseen-shift vulnerability, telemetry-source importance, and recovery-oriented decision support.
 
@@ -1059,4 +1065,90 @@ Batch 2: 22 references
 Total so far: 55 references
 
 This reaches the minimum strong journal target. One optional Batch 3 can add 8–10 more papers on high-confidence computing, conformal prediction, and simulator-in-the-loop UAV validation.
+
+
+
+---
+
+# TRUST-Swarm Information Fusion Candidate References
+
+## Purpose
+
+This document adds candidate references specifically for strengthening the Information Fusion framing of the TRUST-Swarm manuscript.
+
+These references should be audited before final submission for exact author order, title, venue, year, DOI, and journal formatting.
+
+---
+
+## Information Fusion Foundations
+
+[IF1] Hall, D. L., & Llinas, J. (1997). An introduction to multisensor data fusion. Proceedings of the IEEE, 85(1), 6–23.
+
+[IF2] Khaleghi, B., Khamis, A., Karray, F. O., & Razavi, S. N. (2013). Multisensor data fusion: A review of the state-of-the-art. Information Fusion, 14(1), 28–44.
+
+[IF3] Castanedo, F. (2013). A review of data fusion techniques. The Scientific World Journal.
+
+[IF4] Dasarathy, B. V. (1997). Sensor fusion potential exploitation: Innovative architectures and illustrative applications. Proceedings of the IEEE, 85(1), 24–38.
+
+[IF5] Liggins, M. E., Hall, D. L., & Llinas, J. (2008). Handbook of Multisensor Data Fusion: Theory and Practice. CRC Press.
+
+[IF6] Blasch, E., Bosse, É., & Lambert, D. A. (2012). High-Level Information Fusion Management and Systems Design. Artech House.
+
+[IF7] Steinberg, A. N., Bowman, C. L., & White, F. E. (1999). Revisions to the JDL data fusion model. Proceedings of SPIE.
+
+[IF8] Mitchell, H. B. (2007). Multi-Sensor Data Fusion: An Introduction. Springer.
+
+---
+
+## Uncertainty-Aware and Conflict-Aware Fusion
+
+[IF9] Dempster, A. P. (1968). A generalization of Bayesian inference. Journal of the Royal Statistical Society: Series B.
+
+[IF10] Shafer, G. (1976). A Mathematical Theory of Evidence. Princeton University Press.
+
+[IF11] Xiao, F. (2018). Multi-sensor data fusion based on a generalised belief divergence measure. Engineering Applications of Artificial Intelligence.
+
+[IF12] Li, G., Battistelli, G., Yi, W., & Kong, L. (2019). Distributed multi-sensor multi-view fusion based on generalized covariance intersection. Signal Processing.
+
+---
+
+## Multi-Source and Multi-Temporal Fusion
+
+[IF13] Ghamisi, P., Rasti, B., Yokoya, N., Wang, Q., Hofle, B., Bruzzone, L., Bovolo, F., Chi, M., Anders, K., Gloaguen, R., Atkinson, P. M., & Benediktsson, J. A. (2019). Multisource and multitemporal data fusion in remote sensing: A comprehensive review. IEEE Geoscience and Remote Sensing Magazine.
+
+[IF14] Zitnik, M., & Zupan, B. (2015). Data fusion by matrix factorization. IEEE Transactions on Pattern Analysis and Machine Intelligence.
+
+[IF15] Snidaro, L., Garcia, J., & Llinas, J. (2015). Context-enhanced information fusion: Boosting real-world performance with domain knowledge. Springer.
+
+---
+
+## How These References Support TRUST-Swarm
+
+These references support the Information Fusion framing of TRUST-Swarm in the following ways:
+
+1. [IF1]–[IF4] support the basic multisensor and multi-source data fusion foundation.
+2. [IF5]–[IF8] support high-level fusion architectures and system-level fusion design.
+3. [IF9]–[IF12] support uncertainty-aware, conflict-aware, and distributed fusion.
+4. [IF13]–[IF15] support multi-source and multi-temporal fusion concepts.
+
+## Recommended Manuscript Use
+
+Use these references in:
+
+* Introduction: to support the statement that UAV mission assurance is a multi-source information-fusion problem.
+* Related Work: to create a dedicated information-fusion subsection.
+* Methodology: to support graph-temporal fusion-window construction.
+* Discussion: to justify why TRUST-Swarm is more than a classifier.
+
+## Audit Status
+
+Status: candidate references only.
+
+Before final submission:
+
+* verify DOI,
+* verify page numbers,
+* confirm final publication venue,
+* remove weak or less relevant references,
+* format according to the target journal.
 

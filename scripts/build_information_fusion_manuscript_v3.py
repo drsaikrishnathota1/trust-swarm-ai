@@ -30,7 +30,7 @@ content.append(fig(
 ))
 content.append("\n---\n")
 
-content.append(read("docs/information_fusion_related_work_v2.md"))
+content.append(read("docs/information_fusion_related_work_v3.md"))
 content.append("\n---\n")
 
 content.append(read("docs/information_fusion_methodology_v2.md"))
@@ -97,6 +97,9 @@ content.append(read("docs/final_figure_captions.md"))
 content.append("\n---\n")
 
 content.append(read("docs/combined_reference_list.md"))
+content.append("\n---\n")
+
+content.append(read("docs/information_fusion_candidate_references.md"))
 
 out.write_text("\n".join(content))
 print(f"Saved: {out}")
