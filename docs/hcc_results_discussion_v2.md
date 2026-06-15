@@ -97,6 +97,67 @@ This subsection consolidates the actual RunPod-generated experimental evidence u
 
 The corresponding publication-quality evidence tables are generated in `docs/tables/hcc_real_runpod_evidence_tables_v1.md` and should be used as the source for final manuscript tables.
 
+
+### 5.0.1. Compact real RunPod evidence tables
+
+The following compact tables are generated from the real extracted RunPod CSV outputs. They provide the numerical evidence behind the model-comparison, OOD, calibration, feature-importance, ablation, and runtime claims.
+
+### Table R1. RunPod model-comparison summary
+| model                    |   accuracy_mean |   macro_f1_mean |
+|:-------------------------|----------------:|----------------:|
+| GraphTemporalTransformer |          0.9647 |          0.875  |
+| cnn1d                    |          0.9987 |          0.9971 |
+| gru                      |          0.9796 |          0.9288 |
+| lstm                     |          0.9871 |          0.9608 |
+
+### Table R2. RunPod OOD stress-test summary
+| condition              |   macro_f1_mean |   mean_entropy_mean |
+|:-----------------------|----------------:|--------------------:|
+| delayed_combined       |          0.0521 |              0.231  |
+| in_distribution_test   |          0.875  |              0.0928 |
+| intermittent_tampering |          0.5965 |              0.2486 |
+| slow_gps_drift         |          0.1701 |              0.2721 |
+| stealth_jammer         |          0.0779 |              0.3449 |
+| unseen_swarm_noise     |          0.8744 |              0.0928 |
+
+### Table R3. RunPod calibration and uncertainty summary
+| model                    |   mc_samples_mean |   mc_samples_std |   accuracy_mean |   accuracy_std |   macro_f1_mean |   macro_f1_std |   expected_calibration_error_mean |   expected_calibration_error_std |   brier_score_mean |   brier_score_std |   mean_confidence_mean |   mean_confidence_std |   mean_predictive_entropy_mean |   mean_predictive_entropy_std |
+|:-------------------------|------------------:|-----------------:|----------------:|---------------:|----------------:|---------------:|----------------------------------:|---------------------------------:|-------------------:|------------------:|-----------------------:|----------------------:|-------------------------------:|------------------------------:|
+| GraphTemporalTransformer |                20 |                0 |          0.9655 |         0.0076 |          0.8808 |         0.0122 |                            0.0088 |                           0.0024 |             0.0531 |            0.0129 |                 0.9601 |                0.0056 |                         0.0986 |                        0.0117 |
+
+### Table R4. RunPod top telemetry feature-importance summary
+| feature                |   baseline_macro_f1_mean |
+|:-----------------------|-------------------------:|
+| latency_ms             |                    0.875 |
+| zone_coverage          |                    0.875 |
+| route_deviation_m      |                    0.875 |
+| mission_progress       |                    0.875 |
+| gps_jump_m             |                    0.875 |
+| velocity_inconsistency |                    0.875 |
+| energy_consumption     |                    0.875 |
+| packet_loss_rate       |                    0.875 |
+| battery_level          |                    0.875 |
+
+### Table R5. RunPod ablation summary
+| configuration                      | ablation_type      |   train_loss |   test_loss |   accuracy |   macro_precision |   macro_recall |   macro_f1 |   parameters | calibration_evidence   | ood_evidence   | explanation_evidence   | recovery_support   | interpretation                                                                                                        |
+|:-----------------------------------|:-------------------|-------------:|------------:|-----------:|------------------:|---------------:|-----------:|-------------:|:-----------------------|:---------------|:-----------------------|:-------------------|:----------------------------------------------------------------------------------------------------------------------|
+| A0_full_graph_temporal_transformer | model_architecture |       0.0955 |      0.1182 |     0.9579 |            0.9276 |         0.8433 |     0.8734 |       680840 | yes                    | yes            | yes                    | yes                | Architecture-level ablation trained and evaluated on the same graph-temporal dataset.                                 |
+| A1_without_uav_node_attention      | model_architecture |       0.1224 |      0.102  |     0.9572 |            0.793  |         0.7993 |     0.7903 |       415880 | yes                    | yes            | yes                    | yes                | Architecture-level ablation trained and evaluated on the same graph-temporal dataset.                                 |
+| A2_without_temporal_transformer    | model_architecture |       0.0973 |      0.1341 |     0.9507 |            0.9263 |         0.7982 |     0.8237 |       284296 | yes                    | yes            | yes                    | yes                | Architecture-level ablation trained and evaluated on the same graph-temporal dataset.                                 |
+| A3_without_uncertainty_calibration | framework_module   |     nan      |      0.1182 |     0.9579 |            0.9276 |         0.8433 |     0.8734 |       680840 | no                     | yes            | yes                    | yes                | Removes confidence reliability evidence; prediction remains available but ECE/Brier/confidence evidence is absent.    |
+| A4_without_ood_stress_testing      | framework_module   |     nan      |      0.1182 |     0.9579 |            0.9276 |         0.8433 |     0.8734 |       680840 | yes                    | no             | yes                    | yes                | Removes unseen-shift vulnerability evidence; prediction remains available but OOD risk evidence is absent.            |
+| A5_without_explainability          | framework_module   |     nan      |      0.1182 |     0.9579 |            0.9276 |         0.8433 |     0.8734 |       680840 | yes                    | yes            | no                     | yes                | Removes traceable mission-risk driver evidence; prediction remains available but feature-level explanation is absent. |
+| A6_without_recovery_reasoning      | framework_module   |     nan      |      0.1182 |     0.9579 |            0.9276 |         0.8433 |     0.8734 |       680840 | yes                    | yes            | yes                    | no                 | Removes mission-response support; prediction, calibration, OOD, and explanation remain available.                     |
+
+### Table R6. RunPod runtime-complexity summary
+| model                    |   parameters |   model_size_mb |   batch_size |   window_size |   num_uavs |   num_features |   inference_batch_latency_ms |   inference_sample_latency_ms |   throughput_windows_per_second |   single_train_step_ms | device   |   gpu_memory_mb |
+|:-------------------------|-------------:|----------------:|-------------:|--------------:|-----------:|---------------:|-----------------------------:|------------------------------:|--------------------------------:|-----------------------:|:---------|----------------:|
+| LSTM                     |       308616 |           1.181 |          128 |            20 |         20 |              9 |                        0.214 |                        0.0017 |                        599007   |                  1.674 | cuda     |         147.314 |
+| GRU                      |       235912 |           0.904 |          128 |            20 |         20 |              9 |                        0.177 |                        0.0014 |                        724111   |                  1.48  | cuda     |         147.595 |
+| CNN1D                    |       136840 |           0.531 |          128 |            20 |         20 |              9 |                        0.211 |                        0.0016 |                        606987   |                  1.465 | cuda     |         147.595 |
+| GraphTemporalTransformer |       680840 |           2.618 |          128 |            20 |         20 |              9 |                        2.267 |                        0.0177 |                         56458.4 |                  9.938 | cuda     |         932.105 |
+
+
 ### 5.1. In-distribution mission-state recognition
 
 Table 2 reports the main in-distribution classification findings. The in-distribution evaluation shows that mission-state recognition is feasible using graph-temporal UAV telemetry. The Graph-Temporal Transformer achieves a mean accuracy of 0.9647 and a mean macro F1 score of 0.8750 across the three-seed evaluation. These values indicate that the model can learn mission-state patterns from communication, navigation, energy, coverage, and mission-progress telemetry. The result is meaningful because the evaluation includes not only normal and single-attack conditions, but also combined cyber-physical attack states.
@@ -156,44 +217,3 @@ The results support four main observations. First, graph-temporal mission-state 
 The most important scientific point is that TRUST-Swarm should be framed as an assurance framework rather than a classifier superiority claim. The 1D-CNN baseline shows stronger raw in-distribution classification performance. However, the proposed framework contributes additional high-confidence computing capabilities that are not captured by raw macro F1 alone. These include calibrated confidence, OOD vulnerability exposure, traceable mission-risk drivers, ablation evidence, runtime feasibility, and recovery-oriented reasoning.
 
 This balanced interpretation makes the manuscript stronger. It avoids exaggerated claims and aligns the contribution with the scope of High-Confidence Computing. The paper demonstrates that secure UAV swarm mission assurance requires integrated evidence about prediction, reliability, robustness, traceability, and response support.
-
-### 5.9. Automatically inserted result-table previews
-
-The following tables are automatically extracted from available CSV files under the local `results/` directory. They are included to preserve numeric reproducibility and prevent manual copying errors.
-
-**Source file:** `results/hcc/ablation_summary.csv`
-
-| configuration | ablation_type | train_loss | test_loss | accuracy | macro_precision | macro_recall | macro_f1 | parameters | calibration_evidence | ood_evidence | explanation_evidence | recovery_support | interpretation |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| A0_full_graph_temporal_transformer | model_architecture | 0.09546179582465844 | 0.11820491030812263 | 0.9579185520361991 | 0.927624114385649 | 0.8433213650876751 | 0.8734159371910365 | 680840 | yes | yes | yes | yes | Architecture-level ablation trained and evaluated on the same graph-temporal dataset. |
-| A1_without_uav_node_attention | model_architecture | 0.12242422580988292 | 0.10202680718010435 | 0.9571644042232278 | 0.792966784801138 | 0.7993020771300401 | 0.7903457708140788 | 415880 | yes | yes | yes | yes | Architecture-level ablation trained and evaluated on the same graph-temporal dataset. |
-| A2_without_temporal_transformer | model_architecture | 0.09725682711206286 | 0.13414442351159567 | 0.9506787330316742 | 0.9263067869267713 | 0.7982204460529145 | 0.8237202081472406 | 284296 | yes | yes | yes | yes | Architecture-level ablation trained and evaluated on the same graph-temporal dataset. |
-| A3_without_uncertainty_calibration | framework_module |  | 0.11820491030812263 | 0.9579185520361991 | 0.927624114385649 | 0.8433213650876751 | 0.8734159371910365 | 680840 | no | yes | yes | yes | Removes confidence reliability evidence; prediction remains available but ECE/Brier/confidence evidence is absent. |
-| A4_without_ood_stress_testing | framework_module |  | 0.11820491030812263 | 0.9579185520361991 | 0.927624114385649 | 0.8433213650876751 | 0.8734159371910365 | 680840 | yes | no | yes | yes | Removes unseen-shift vulnerability evidence; prediction remains available but OOD risk evidence is absent. |
-| A5_without_explainability | framework_module |  | 0.11820491030812263 | 0.9579185520361991 | 0.927624114385649 | 0.8433213650876751 | 0.8734159371910365 | 680840 | yes | yes | no | yes | Removes traceable mission-risk driver evidence; prediction remains available but feature-level explanation is absent. |
-| A6_without_recovery_reasoning | framework_module |  | 0.11820491030812263 | 0.9579185520361991 | 0.927624114385649 | 0.8433213650876751 | 0.8734159371910365 | 680840 | yes | yes | yes | no | Removes mission-response support; prediction, calibration, OOD, and explanation remain available. |
-
-
-**Source file:** `results/hcc/runtime_complexity_summary.csv`
-
-| model | parameters | model_size_mb | batch_size | window_size | num_uavs | num_features | inference_batch_latency_ms | inference_sample_latency_ms | throughput_windows_per_second | single_train_step_ms | device | gpu_memory_mb |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| LSTM | 308616 | 1.181 | 128 | 20 | 20 | 9 | 0.214 | 0.001669 | 599006.617 | 1.674 | cuda | 147.314 |
-| GRU | 235912 | 0.904 | 128 | 20 | 20 | 9 | 0.177 | 0.001381 | 724111.11 | 1.48 | cuda | 147.595 |
-| CNN1D | 136840 | 0.531 | 128 | 20 | 20 | 9 | 0.211 | 0.001647 | 606987.446 | 1.465 | cuda | 147.595 |
-| GraphTemporalTransformer | 680840 | 2.618 | 128 | 20 | 20 | 9 | 2.267 | 0.017712 | 56458.364 | 9.938 | cuda | 932.105 |
-
-
-**Source file:** `results/tables/realistic_dataset_summary.csv`
-
-| attack_label | attack_name | rows |
-| --- | --- | --- |
-| 0 | normal | 1076680 |
-| 1 | jamming | 87480 |
-| 2 | spoofing | 83100 |
-| 3 | tampering | 60620 |
-| 4 | jamming_spoofing | 44660 |
-| 5 | jamming_tampering | 29840 |
-| 6 | spoofing_tampering | 26920 |
-| 7 | combined | 30700 |
-
