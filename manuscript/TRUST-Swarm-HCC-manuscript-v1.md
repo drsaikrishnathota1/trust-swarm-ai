@@ -141,7 +141,13 @@ This section presents the methodology of TRUST-Swarm, a high-confidence graph-te
 
 ### 3.1. Framework overview
 
-Fig. 1 illustrates the TRUST-Swarm framework architecture. TRUST-Swarm consists of six integrated layers. The first layer generates multi-UAV mission telemetry under normal and adversarial cyber-physical conditions. The second layer converts raw telemetry into graph-temporal mission windows that preserve UAV-node structure, mission-time evolution, and heterogeneous telemetry features. The third layer performs mission-state prediction using a Graph-Temporal Transformer. The fourth layer evaluates prediction reliability using confidence and calibration metrics. The fifth layer evaluates OOD behavior under unseen cyber-physical stress conditions. The sixth layer provides traceable explanation and recovery-oriented reasoning.
+Fig. 1 illustrates the TRUST-Swarm framework architecture.
+
+![Fig. 1. TRUST-Swarm high-confidence mission-assurance framework](../figures/hcc/fig1_trust_swarm_framework.png)
+
+![Fig. 2. Graph-temporal mission-window representation](../figures/hcc/fig2_graph_temporal_window.png)
+
+ TRUST-Swarm consists of six integrated layers. The first layer generates multi-UAV mission telemetry under normal and adversarial cyber-physical conditions. The second layer converts raw telemetry into graph-temporal mission windows that preserve UAV-node structure, mission-time evolution, and heterogeneous telemetry features. The third layer performs mission-state prediction using a Graph-Temporal Transformer. The fourth layer evaluates prediction reliability using confidence and calibration metrics. The fifth layer evaluates OOD behavior under unseen cyber-physical stress conditions. The sixth layer provides traceable explanation and recovery-oriented reasoning.
 
 The framework can be summarized as follows:
 
@@ -391,6 +397,20 @@ Despite this limitation, the controlled setup is useful for the present study be
 ## 5. Results and discussion
 
 This section presents the experimental findings of TRUST-Swarm and interprets them from a high-confidence computing perspective. The purpose of the evaluation is not limited to identifying the model with the highest in-distribution classification score. Instead, the results are analyzed across five assurance dimensions: mission-state recognition, calibrated reliability, OOD cyber-physical stress behavior, traceable feature-level explanation, and recovery-oriented reasoning. This organization is important because secure multi-UAV mission assurance requires more than a predicted label. A useful framework must also identify when predictions are reliable, when unseen mission shifts create risk, which telemetry signals influence the decision, and how the output can support response planning.
+
+
+![Fig. 3. In-distribution macro-F1 comparison](../figures/hcc/fig3_indistribution_macro_f1.png)
+
+![Fig. 4. OOD stress-test degradation](../figures/hcc/fig4_ood_stress_degradation.png)
+
+![Fig. 5. In-distribution calibration evidence](../figures/hcc/fig5_calibration_evidence.png)
+
+![Fig. 6. Ablation evidence for graph-temporal components](../figures/hcc/fig6_ablation_evidence.png)
+
+![Fig. 7. Top mission-risk telemetry drivers](../figures/hcc/fig7_feature_importance_rank.png)
+
+![Fig. 8. Runtime and complexity profile](../figures/hcc/fig8_runtime_profile.png)
+
 
 ### 5.1. In-distribution mission-state recognition
 

@@ -4,6 +4,20 @@
 
 This section presents the experimental findings of TRUST-Swarm and interprets them from a high-confidence computing perspective. The purpose of the evaluation is not limited to identifying the model with the highest in-distribution classification score. Instead, the results are analyzed across five assurance dimensions: mission-state recognition, calibrated reliability, OOD cyber-physical stress behavior, traceable feature-level explanation, and recovery-oriented reasoning. This organization is important because secure multi-UAV mission assurance requires more than a predicted label. A useful framework must also identify when predictions are reliable, when unseen mission shifts create risk, which telemetry signals influence the decision, and how the output can support response planning.
 
+
+![Fig. 3. In-distribution macro-F1 comparison](../figures/hcc/fig3_indistribution_macro_f1.png)
+
+![Fig. 4. OOD stress-test degradation](../figures/hcc/fig4_ood_stress_degradation.png)
+
+![Fig. 5. In-distribution calibration evidence](../figures/hcc/fig5_calibration_evidence.png)
+
+![Fig. 6. Ablation evidence for graph-temporal components](../figures/hcc/fig6_ablation_evidence.png)
+
+![Fig. 7. Top mission-risk telemetry drivers](../figures/hcc/fig7_feature_importance_rank.png)
+
+![Fig. 8. Runtime and complexity profile](../figures/hcc/fig8_runtime_profile.png)
+
+
 ### 5.1. In-distribution mission-state recognition
 
 Table 2 reports the main in-distribution classification findings. The in-distribution evaluation shows that mission-state recognition is feasible using graph-temporal UAV telemetry. The Graph-Temporal Transformer achieves a mean accuracy of 0.9647 and a mean macro F1 score of 0.8750 across the three-seed evaluation. These values indicate that the model can learn mission-state patterns from communication, navigation, energy, coverage, and mission-progress telemetry. The result is meaningful because the evaluation includes not only normal and single-attack conditions, but also combined cyber-physical attack states.
