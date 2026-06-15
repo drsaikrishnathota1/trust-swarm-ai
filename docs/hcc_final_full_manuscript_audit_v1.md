@@ -1,7 +1,7 @@
 # HCC Final Full Manuscript Audit v1
 
 **Manuscript:** `manuscript/TRUST-Swarm-HCC-manuscript-v1.md`
-**Approx total word count:** 11505
+**Approx total word count:** 11639
 **Section word-count CSV:** `docs/hcc_section_word_counts_v1.csv`
 
 ## Overall status
@@ -19,7 +19,7 @@
 | 2. Related work | 1753 |
 | 3. Methodology | 1830 |
 | 4. Experimental setup | 1486 |
-| 5. Results and discussion | 2248 |
+| 5. Results and discussion | 2382 |
 | 6. Limitations and future work | 586 |
 | 7. Conclusion | 1713 |
 
@@ -39,13 +39,11 @@ M docs/hcc_manuscript_quality_check.md
  M manuscript/TRUST-Swarm-HCC-submission-draft-v2.md
  M submission/TRUST-Swarm-HCC-final-submission.docx
  M submission/TRUST-Swarm-HCC-final-submission.pdf
-?? docs/runpod_evidence/
-?? figures/runpod_evidence/
-?? runpod_artifacts/
+?? docs/tables/hcc_real_runpod_evidence_tables_v1.md
+?? figures/hcc_real_evidence/
 ?? scripts/build_hcc_final_docx_pdf_v2.py
-?? scripts/ingest_runpod_evidence_fast_v1.py
+?? scripts/build_hcc_real_runpod_evidence_v1.py
 ?? scripts/ingest_runpod_evidence_v1.py
-?? submission/TRUST-Swarm-HCC-final-submission-v2-with-figures.docx
 ?? submission/TRUST-Swarm-HCC-final-submission-v2-with-figures.pdf
 ```
 
@@ -53,9 +51,9 @@ M docs/hcc_manuscript_quality_check.md
 
 - All required v2 section files exist.
 - Required manuscript sections are present.
-- Total word count is journal-level: 11505 words.
+- Total word count is journal-level: 11639 words.
 - No duplicate top-level section headings found.
 - Numbered reference entries found: 54.
 - Results section includes CSV table previews or did not report missing CSV previews.
-- Figure mentions detected: 10.
+- Figure mentions detected: 16.
 - Table mentions detected: 2.

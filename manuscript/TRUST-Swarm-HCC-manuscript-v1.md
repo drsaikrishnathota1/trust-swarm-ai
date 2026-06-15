@@ -471,6 +471,24 @@ The following figures are copied from the RunPod experimental artifact archive a
 
 ![RunPod Fig. R28. Explainability](figures/runpod_evidence/runpod_fig_28_explainability_feature_importance.png)
 
+### 5.0. Real RunPod experimental evidence package
+
+This subsection consolidates the actual RunPod-generated experimental evidence used in the manuscript, including model-comparison summaries, OOD stress-test outputs, uncertainty/calibration summaries, feature-importance results, ablation evidence, and runtime-complexity profiling. Unlike conceptual architecture figures, these figures are generated directly from the extracted RunPod CSV result artifacts.
+
+![Fig. 3. RunPod model-comparison macro-F1 evidence](figures/hcc_real_evidence/fig3_runpod_model_macro_f1.png)
+
+![Fig. 4. RunPod model-comparison accuracy evidence](figures/hcc_real_evidence/fig4_runpod_model_accuracy.png)
+
+![Fig. 5. RunPod OOD macro-F1 degradation evidence](figures/hcc_real_evidence/fig5_runpod_ood_macro_f1.png)
+
+![Fig. 6. RunPod OOD uncertainty/entropy evidence](figures/hcc_real_evidence/fig6_runpod_ood_entropy.png)
+
+![Fig. 8. RunPod feature-importance evidence](figures/hcc_real_evidence/fig8_runpod_feature_importance.png)
+
+![Fig. 9. RunPod ablation evidence](figures/hcc_real_evidence/fig9_runpod_ablation.png)
+
+The corresponding publication-quality evidence tables are generated in `docs/tables/hcc_real_runpod_evidence_tables_v1.md` and should be used as the source for final manuscript tables.
+
 ### 5.1. In-distribution mission-state recognition
 
 Table 2 reports the main in-distribution classification findings. The in-distribution evaluation shows that mission-state recognition is feasible using graph-temporal UAV telemetry. The Graph-Temporal Transformer achieves a mean accuracy of 0.9647 and a mean macro F1 score of 0.8750 across the three-seed evaluation. These values indicate that the model can learn mission-state patterns from communication, navigation, energy, coverage, and mission-progress telemetry. The result is meaningful because the evaluation includes not only normal and single-attack conditions, but also combined cyber-physical attack states.
