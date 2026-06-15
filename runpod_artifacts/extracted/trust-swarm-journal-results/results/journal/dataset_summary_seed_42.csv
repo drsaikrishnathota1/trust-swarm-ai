@@ -1,0 +1,9 @@
+attack_label,attack_name,rows
+0,normal,1076680
+1,jamming,87480
+2,spoofing,83100
+3,tampering,60620
+4,jamming_spoofing,44660
+5,jamming_tampering,29840
+6,spoofing_tampering,26920
+7,combined,30700

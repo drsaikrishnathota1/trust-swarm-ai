@@ -1,0 +1,2 @@
+model,test_loss,accuracy,macro_f1,macro_precision,macro_recall
+GraphTemporalTransformer,0.07087836210948849,0.9710407239819004,0.8898220238348775,0.9260343943893539,0.8791298305372999
